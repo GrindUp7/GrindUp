@@ -3,13 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrindUp Products | Digital Goods</title>
+    <title>GRINDUP | Products</title>
     <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Additional styles for products page */
+        .products-section {
+            padding: 10rem 2rem 5rem;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background-color: var(--secondary);
+            border: 1px solid #222;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-info h3 {
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .price {
+            font-size: 1.2rem;
+        }
+        .free-tag {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .add-to-cart {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .add-to-cart:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+    </style>
 </head>
 <body>
     <header class="dark-header">
         <nav>
-            <div class="logo">GRIND<span>UP</span></div>
+            <div class="logo">GRINDUP</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
@@ -19,28 +69,26 @@
     </header>
 
     <section class="products-section">
-        <h2>DIGITAL PRODUCTS</h2>
+        <h2 style="text-align: center; font-weight: 300; letter-spacing: 2px; margin-bottom: 3rem;">DIGITAL PRODUCTS</h2>
         <div class="product-grid">
             <!-- Paid Product -->
             <div class="product-card">
-                <div class="product-image" style="background: #1a1a1a;"></div>
                 <div class="product-info">
-                    <h3>The Ultimate Grind Guide</h3>
-                    <p class="product-desc">Complete blueprint for success</p>
-                    <div class="product-footer">
-                        <span class="price">$29.99</span>
-                        <button class="add-to-cart">BUY NOW</button>
+                    <h3>THE GRIND MANUAL</h3>
+                    <p class="product-desc">Master your productivity with this essential guide</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span class="price">$49</span>
+                        <button class="add-to-cart">BUY</button>
                     </div>
                 </div>
             </div>
             
             <!-- Free Product -->
             <div class="product-card">
-                <div class="product-image" style="background: #1a1a1a;"></div>
                 <div class="product-info">
-                    <h3>Free Daily Routine Template</h3>
-                    <p class="product-desc">Start optimizing your day</p>
-                    <div class="product-footer">
+                    <h3>DAILY FOCUS TEMPLATE</h3>
+                    <p class="product-desc">Free download to optimize your workflow</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span class="free-tag">FREE</span>
                         <button class="add-to-cart">DOWNLOAD</button>
                     </div>
@@ -50,7 +98,7 @@
     </section>
 
     <footer class="dark-footer">
-        <p>© 2024 GrindUp. All rights reserved.</p>
+        <p>© 2024 GRINDUP. ALL RIGHTS RESERVED.</p>
     </footer>
 </body>
 </html>
