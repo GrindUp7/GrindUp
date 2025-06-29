@@ -1,9 +1,10 @@
+/* Luxury Black Theme */
 :root {
-    --primary: #000000;
-    --secondary: #111111;
-    --accent: #00FF9D; /* Neon green (change to your color) */
-    --text: #FFFFFF;
-    --text-secondary: #AAAAAA;
+    --primary: #000000;       /* Pure black */
+    --secondary: #0a0a0a;     /* Slightly lighter black */
+    --accent: #ffffff;        /* White for accents */
+    --text: #ffffff;          /* White text */
+    --text-secondary: #aaaaaa; /* Gray text */
 }
 
 body {
@@ -12,81 +13,108 @@ body {
     padding: 0;
     background-color: var(--primary);
     color: var(--text);
+    line-height: 1.6;
 }
 
+/* Header - Pure Black */
 .dark-header {
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 1rem 2rem;
+    background-color: var(--primary);
+    padding: 1.5rem 3rem;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #222;
 }
 
+/* Logo - Pure White (No Color) */
 .logo {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--accent); /* White only */
 }
 
+/* Remove the colored span */
 .logo span {
-    color: var(--accent);
+    color: var(--accent); /* Same white as main logo */
 }
 
+/* Navigation */
 nav ul {
     display: flex;
     list-style: none;
-}
-
-nav ul li {
-    margin-left: 2rem;
+    gap: 2rem;
 }
 
 nav ul li a {
     color: var(--text);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
 }
 
 nav ul li a:hover {
-    color: var(--accent);
+    opacity: 0.7;
 }
 
+/* Hero Section - Ultra Minimal */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    background: var(--primary);
     display: flex;
     align-items: center;
-    padding: 0 5rem;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
+    font-weight: 300;
     margin-bottom: 1rem;
-    line-height: 1.1;
-    font-weight: 900;
+    letter-spacing: -2px;
 }
 
 .hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
     color: var(--text-secondary);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-button {
     display: inline-block;
-    background-color: var(--accent);
-    color: #000;
-    padding: 1rem 2rem;
-    border-radius: 30px;
+    background: transparent;
+    color: var(--accent);
+    padding: 1rem 3rem;
+    border: 1px solid var(--accent);
     text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    transition: all 0.3s;
 }
 
+.cta-button:hover {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+/* Footer - Pure Black */
 .dark-footer {
-    background-color: var(--secondary);
-    padding: 2rem;
+    background-color: var(--primary);
+    padding: 3rem;
     text-align: center;
+    border-top: 1px solid #222;
+}
+
+.dark-footer p {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
     color: var(--text-secondary);
 }
