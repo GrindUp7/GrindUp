@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrindUp | Built to Grind. Made to Win.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== GLOBAL STYLES ===== */
+    :root {
+      --black: #0A0A0A;
+      --gold: #D4AF37;
+      --teal: #00F5FF;
+      --white: #FFFFFF;
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-subheading: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ===== LOADER ===== */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* ===== NAVBAR ===== */
+    .luxury-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 5%;
+      position: fixed;
+      width: 100%;
+      background: rgba(10,10,10,0.9);
+      z-index: 1000;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      height: 100vh;
+      background: url('hero-bg.jpg') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* ===== PRODUCT GRID ===== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 5%;
+    }
+
+    .product-card {
+      border: 1px solid rgba(212,175,55,0.3);
+      transition: all 0.3s ease;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loader">
+    <img src="logo-gold.svg" alt="Loading...">
+  </div>
+
+  <!-- Navbar -->
+  <nav class="luxury-nav">
+    <div class="logo">GRINDUP</div>
+    <div class="nav-links">
+      <a href="#products">Products</a>
+      <a href="#reviews">Reviews</a>
+      <button class="login-btn">Login</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>ELITE KNOWLEDGE</h1>
+      <p>Built to Grind. Made to Win.</p>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="product-section">
+    <h2>Our Collections</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="product1-thumb.jpg" alt="Crypto Blackbook">
+        <h3>Crypto Blackbook</h3>
+        <p>$1,499</p>
+        <a href="product1.html" class="view-btn">View Details</a>
+      </div>
+      <!-- More products... -->
+    </div>
+  </section>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.loader').style.opacity = '0';
+        setTimeout(function() {
+          document.querySelector('.loader').style.display = 'none';
+        }, 500);
+      }, 1500);
+    });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
