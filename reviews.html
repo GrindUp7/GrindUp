@@ -4,295 +4,551 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Reviews | GrindUp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* [Same CSS as index.html] */
-    .reviews-page {
-      padding: 8rem 5% 5rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    :root {
+      --black: #0A0A0A;
+      --dark-gray: #1A1A1A;
+      --medium-gray: #2A2A2A;
+      --gold: #D4AF37;
+      --gold-light: #E6C875;
+      --white: #FFFFFF;
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
     }
-    
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Luxury texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 25%),
+        linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(10,10,10,1));
+      z-index: -1;
+    }
+
+    /* Navbar (matches other pages) */
+    .luxury-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Main Content */
+    .reviews-page {
+      max-width: 1200px;
+      margin: 100px auto 50px;
+      padding: 0 5%;
+    }
+
     .page-header {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
     }
-    
+
     .page-header h1 {
+      font-family: var(--font-heading);
       font-size: 3.5rem;
+      color: var(--gold);
+      letter-spacing: 2px;
       margin-bottom: 1rem;
     }
-    
+
     .page-header p {
-      font-size: 1.1rem;
-      opacity: 0.8;
       max-width: 600px;
       margin: 0 auto;
+      opacity: 0.8;
     }
-    
-    .all-reviews {
+
+    /* Reviews Grid */
+    .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
     }
-    
+
     .review-card {
-      background: var(--medium-gray);
+      background: var(--dark-gray);
+      border: 1px solid rgba(212,175,55,0.1);
       border-radius: 8px;
       padding: 2rem;
-      border: 1px solid rgba(212,175,55,0.1);
+      transition: all 0.3s ease;
     }
-    
-    .review-product {
-      font-size: 0.9rem;
+
+    .review-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .reviewer-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1.5rem;
+      border: 2px solid var(--gold);
+    }
+
+    .reviewer-details h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .review-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .review-rating {
       color: var(--gold);
-      margin-bottom: 0.5rem;
     }
-    
+
+    .review-date {
+      font-size: 0.8rem;
+    }
+
+    .review-product {
+      display: inline-block;
+      background: rgba(212,175,55,0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-images {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .review-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 4px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .review-image:hover {
+      transform: scale(1.1);
+    }
+
+    /* Review Form */
     .review-form-container {
-      background: var(--dark-gray);
-      border: 1px solid var(--gold);
-      border-radius: 8px;
-      padding: 3rem;
       max-width: 800px;
       margin: 0 auto;
+      background: var(--dark-gray);
+      padding: 3rem;
+      border-radius: 8px;
+      border: 1px solid rgba(212,175,55,0.2);
     }
-    
+
     .review-form-container h2 {
-      text-align: center;
-      margin-bottom: 2rem;
+      font-family: var(--font-heading);
       font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      text-align: center;
     }
-    
+
     .form-group {
       margin-bottom: 1.5rem;
     }
-    
+
     .form-group label {
       display: block;
       margin-bottom: 0.5rem;
       font-size: 0.9rem;
+      opacity: 0.8;
     }
-    
+
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
       padding: 1rem;
       background: var(--black);
-      border: 1px solid var(--medium-gray);
+      border: 1px solid rgba(212,175,55,0.2);
       color: var(--white);
       font-family: var(--font-body);
+      border-radius: 4px;
     }
-    
+
     .form-group textarea {
       min-height: 150px;
       resize: vertical;
     }
-    
-    .rating-stars {
+
+    .rating-selector {
       display: flex;
       gap: 0.5rem;
-      margin: 1rem 0;
+      margin-bottom: 1rem;
     }
-    
-    .rating-stars .star {
+
+    .rating-star {
       font-size: 1.5rem;
-      color: var(--gold-light);
+      color: var(--gold);
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    
+
+    .rating-star:hover {
+      transform: scale(1.2);
+    }
+
     .submit-review {
-      width: 100%;
-      padding: 1.2rem;
       background: var(--gold);
       color: var(--black);
       border: none;
-      font-size: 1rem;
-      text-transform: uppercase;
+      padding: 1rem 2rem;
+      font-family: var(--font-heading);
       letter-spacing: 1px;
-      font-weight: 500;
+      text-transform: uppercase;
       cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      border-radius: 4px;
+      font-size: 1rem;
       margin-top: 1rem;
     }
-    
+
+    .submit-review:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .all-reviews {
+      .reviews-grid {
         grid-template-columns: 1fr;
       }
       
-      .review-form-container {
-        padding: 2rem;
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .reviewer-info {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .reviewer-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .review-meta {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div class="loader">
-    <div class="loader-content">
-      <img src="assets/grindup-logo-gold.svg" class="loader-logo" alt="GrindUp">
-      <div class="loader-bar"></div>
-    </div>
-  </div>
-
-  <!-- Navbar -->
+  <!-- Navigation -->
   <nav class="luxury-nav">
-    <a href="index.html" class="nav-brand">GRINDUP</a>
+    <div class="nav-brand" onclick="window.location.href='index.html'">GRINDUP</div>
     <div class="nav-links">
-      <a href="index.html#products">Collections</a>
-      <a href="reviews.html">Reviews</a>
-      <button class="auth-trigger">Login</button>
+      <a href="index.html">Home</a>
+      <a href="GrindUp_AI_Income_Ebook.html">Products</a>
     </div>
   </nav>
 
-  <!-- Reviews Content -->
+  <!-- Main Content -->
   <div class="reviews-page">
     <div class="page-header">
-      <h1>Customer Testimonials</h1>
-      <p>Read what our members say about GrindUp products</p>
+      <h1>Elite Testimonials</h1>
+      <p>Hear directly from our members about their experiences with GrindUp products</p>
     </div>
-    
-    <div class="all-reviews">
+
+    <div class="reviews-grid">
       <!-- Review 1 -->
       <div class="review-card">
-        <div class="review-product">GrindUp AI Income Ebook</div>
         <div class="reviewer-info">
-          <img src="assets/reviews/user1.jpg" alt="Alex M.">
-          <div>
-            <p class="reviewer-name">Alex M.</p>
-            <p class="reviewer-meta">Verified Buyer ★★★★★ • Nov 5, 2023</p>
+          <img src="assets/images/user1.jpg" alt="James W." class="reviewer-avatar">
+          <div class="reviewer-details">
+            <h3>James W.</h3>
+            <div class="review-meta">
+              <span class="review-rating">★★★★★</span>
+              <span class="review-date">Oct 15, 2023</span>
+            </div>
           </div>
         </div>
+        <span class="review-product">Crypto Blackbook</span>
         <div class="review-text">
-          <p>This ebook helped me automate my first $5k/month within 60 days. The AI tools recommended are game-changers. I've since built 3 additional income streams using the same framework.</p>
+          <p>The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques. The institutional-grade knowledge in this course is unmatched. The advanced charting techniques alone were worth the investment.</p>
+        </div>
+        <div class="review-images">
+          <img src="assets/images/review-proof1.jpg" alt="Proof" class="review-image">
+          <img src="assets/images/review-proof2.jpg" alt="Proof" class="review-image">
         </div>
       </div>
-      
+
       <!-- Review 2 -->
       <div class="review-card">
-        <div class="review-product">Crypto Blackbook</div>
         <div class="reviewer-info">
-          <img src="assets/reviews/user2.jpg" alt="Sarah K.">
-          <div>
-            <p class="reviewer-name">Sarah K.</p>
-            <p class="reviewer-meta">Verified Buyer ★★★★☆ • Oct 28, 2023</p>
+          <img src="assets/images/user2.jpg" alt="Sarah K." class="reviewer-avatar">
+          <div class="reviewer-details">
+            <h3>Sarah K.</h3>
+            <div class="review-meta">
+              <span class="review-rating">★★★★☆</span>
+              <span class="review-date">Sep 28, 2023</span>
+            </div>
           </div>
         </div>
+        <span class="review-product">AI Income Ebook</span>
         <div class="review-text">
-          <p>The on-chain analysis techniques alone were worth the price. I've avoided two major market downturns thanks to the indicators taught in this course.</p>
+          <p>The AI Income Ebook gave me practical strategies to implement AI in my business immediately. Within 30 days I automated $8,000/month in recurring tasks. The case studies were particularly valuable for understanding real-world applications.</p>
         </div>
       </div>
-      
+
       <!-- Review 3 -->
       <div class="review-card">
-        <div class="review-product">GrindUp AI Income Ebook</div>
         <div class="reviewer-info">
-          <img src="assets/reviews/user3.jpg" alt="James T.">
-          <div>
-            <p class="reviewer-name">James T.</p>
-            <p class="reviewer-meta">Verified Buyer ★★★★★ • Oct 15, 2023</p>
+          <img src="assets/images/user3.jpg" alt="Michael T." class="reviewer-avatar">
+          <div class="reviewer-details">
+            <h3>Michael T.</h3>
+            <div class="review-meta">
+              <span class="review-rating">★★★★★</span>
+              <span class="review-date">Nov 5, 2023</span>
+            </div>
           </div>
         </div>
+        <span class="review-product">Wealth Foundations</span>
         <div class="review-text">
-          <p>I was skeptical about AI tools before this, but the step-by-step implementation guides made it so easy. I automated 80% of my client work and doubled my income while working less.</p>
+          <p>As someone just starting their financial journey, Wealth Foundations provided the perfect roadmap. The principles are timeless and the action steps are clear. I've already paid off $15,000 in debt and started my first investment portfolio using these methods.</p>
         </div>
       </div>
-      
+
       <!-- Review 4 -->
       <div class="review-card">
-        <div class="review-product">Wealth Foundations</div>
         <div class="reviewer-info">
-          <img src="assets/reviews/user4.jpg" alt="Priya S.">
-          <div>
-            <p class="reviewer-name">Priya S.</p>
-            <p class="reviewer-meta">Verified Buyer ★★★★☆ • Sep 30, 2023</p>
+          <img src="assets/images/user4.jpg" alt="Alexandra P." class="reviewer-avatar">
+          <div class="reviewer-details">
+            <h3>Alexandra P.</h3>
+            <div class="review-meta">
+              <span class="review-rating">★★★★★</span>
+              <span class="review-date">Dec 12, 2023</span>
+            </div>
           </div>
         </div>
+        <span class="review-product">AI Income Ebook</span>
         <div class="review-text">
-          <p>For a free course, this is incredible value. The mindset shifts alone helped me negotiate a 30% raise at my job. Now I'm implementing the investment strategies.</p>
+          <p>I was skeptical about AI tools before reading this ebook, but now I'm a complete convert. The step-by-step automation frameworks helped me create three passive income streams in just two months. The ethical implementation section was particularly thoughtful.</p>
+        </div>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="review-card">
+        <div class="reviewer-info">
+          <img src="assets/images/user5.jpg" alt="David R." class="reviewer-avatar">
+          <div class="reviewer-details">
+            <h3>David R.</h3>
+            <div class="review-meta">
+              <span class="review-rating">★★★★★</span>
+              <span class="review-date">Jan 3, 2024</span>
+            </div>
+          </div>
+        </div>
+        <span class="review-product">Crypto Blackbook</span>
+        <div class="review-text">
+          <p>The institutional trading strategies in Crypto Blackbook are game-changing. The risk management techniques have saved me thousands in potential losses. The private Discord community access alone is worth the price for the ongoing insights.</p>
+        </div>
+      </div>
+
+      <!-- Review 6 -->
+      <div class="review-card">
+        <div class="reviewer-info">
+          <img src="assets/images/user6.jpg" alt="Emma L." class="reviewer-avatar">
+          <div class="reviewer-details">
+            <h3>Emma L.</h3>
+            <div class="review-meta">
+              <span class="review-rating">★★★★☆</span>
+              <span class="review-date">Feb 18, 2024</span>
+            </div>
+          </div>
+        </div>
+        <span class="review-product">Wealth Foundations</span>
+        <div class="review-text">
+          <p>This should be required reading for anyone starting their financial journey. The clear explanations of compound interest and asset allocation helped me make smarter decisions with my first $10,000 investment. The bonus worksheets were incredibly helpful.</p>
         </div>
       </div>
     </div>
-    
+
+    <!-- Review Form -->
     <div class="review-form-container">
       <h2>Share Your Experience</h2>
-      <form id="new-review-form">
+      <form id="review-form">
         <div class="form-group">
-          <label for="review-name">Your Name</label>
-          <input type="text" id="review-name" required>
+          <label for="reviewer-name">Your Name</label>
+          <input type="text" id="reviewer-name" required>
         </div>
-        
+        <div class="form-group">
+          <label for="reviewer-email">Email (will not be published)</label>
+          <input type="email" id="reviewer-email" required>
+        </div>
         <div class="form-group">
           <label for="review-product">Product Reviewed</label>
           <select id="review-product" required>
             <option value="">Select a product</option>
-            <option value="GrindUp AI Income Ebook">GrindUp AI Income Ebook</option>
+            <option value="AI Income Ebook">AI Income Ebook</option>
             <option value="Crypto Blackbook">Crypto Blackbook</option>
             <option value="Wealth Foundations">Wealth Foundations</option>
           </select>
         </div>
-        
         <div class="form-group">
           <label>Your Rating</label>
-          <div class="rating-stars">
-            <span class="star" data-rating="1">☆</span>
-            <span class="star" data-rating="2">☆</span>
-            <span class="star" data-rating="3">☆</span>
-            <span class="star" data-rating="4">☆</span>
-            <span class="star" data-rating="5">☆</span>
+          <div class="rating-selector">
+            <span class="rating-star" data-rating="1">★</span>
+            <span class="rating-star" data-rating="2">★</span>
+            <span class="rating-star" data-rating="3">★</span>
+            <span class="rating-star" data-rating="4">★</span>
+            <span class="rating-star" data-rating="5">★</span>
           </div>
-          <input type="hidden" id="review-rating" value="0" required>
+          <input type="hidden" id="rating-value" required>
         </div>
-        
         <div class="form-group">
           <label for="review-text">Your Review</label>
           <textarea id="review-text" required></textarea>
         </div>
-        
         <button type="submit" class="submit-review">Submit Review</button>
       </form>
     </div>
   </div>
 
   <script>
-    // ===== LOADER =====
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.querySelector('.loader').style.opacity = '0';
-        setTimeout(function() {
-          document.querySelector('.loader').style.display = 'none';
-        }, 500);
-      }, 1000);
+    // Smooth scroll to top when clicking logo
+    document.querySelector('.nav-brand').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
 
-    // ===== STAR RATING =====
-    document.querySelectorAll('.rating-stars .star').forEach(star => {
+    // Star rating functionality
+    const stars = document.querySelectorAll('.rating-star');
+    const ratingValue = document.getElementById('rating-value');
+    
+    stars.forEach(star => {
       star.addEventListener('click', function() {
         const rating = this.dataset.rating;
-        document.getElementById('review-rating').value = rating;
+        ratingValue.value = rating;
         
-        // Update star display
-        document.querySelectorAll('.rating-stars .star').forEach((s, i) => {
-          s.textContent = i < rating ? '★' : '☆';
+        stars.forEach((s, index) => {
+          if (index < rating) {
+            s.style.color = 'var(--gold)';
+          } else {
+            s.style.color = 'var(--white)';
+            s.style.opacity = '0.3';
+          }
+        });
+      });
+      
+      star.addEventListener('mouseover', function() {
+        const hoverRating = this.dataset.rating;
+        
+        stars.forEach((s, index) => {
+          if (index < hoverRating) {
+            s.style.transform = 'scale(1.2)';
+          }
+        });
+      });
+      
+      star.addEventListener('mouseout', function() {
+        stars.forEach(s => {
+          s.style.transform = 'scale(1)';
         });
       });
     });
 
-    // ===== FORM SUBMISSION =====
-    document.getElementById('new-review-form').addEventListener('submit', function(e) {
+    // Form submission
+    document.getElementById('review-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      // In a real app, this would send to your backend
-      alert('Thank you for your review! It will appear after approval.');
+      alert('Thank you for your review! It will appear after moderation.');
       this.reset();
       
       // Reset stars
-      document.querySelectorAll('.rating-stars .star').forEach(star => {
-        star.textContent = '☆';
+      stars.forEach(star => {
+        star.style.color = 'var(--white)';
+        star.style.opacity = '0.3';
       });
-      document.getElementById('review-rating').value = '0';
+      ratingValue.value = '';
+    });
+
+    // Image click to enlarge (would need modal implementation)
+    document.querySelectorAll('.review-image').forEach(img => {
+      img.addEventListener('click', function() {
+        // In a real implementation, this would open a lightbox/modal
+        console.log('Opening image viewer for:', this.src);
+      });
     });
   </script>
 </body>
