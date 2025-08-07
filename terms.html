@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service | GrindUp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --dark-gray: #1A1A1A;
+      --gold: #D4AF37;
+      --gold-light: #F5D073;
+      --white: #FFFFFF;
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Luxury texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 25%),
+        linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(10,10,10,1));
+      z-index: -1;
+    }
+
+    /* Navbar (matches other pages) */
+    .luxury-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Legal Content */
+    .legal-container {
+      max-width: 1000px;
+      margin: 100px auto 50px;
+      padding: 0 5%;
+    }
+    
+    .legal-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .legal-header h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+    
+    .legal-content {
+      background: var(--dark-gray);
+      padding: 3rem;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .legal-content h2 {
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      margin: 2rem 0 1rem;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+    
+    .legal-content h3 {
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+    
+    .legal-content p, .legal-content ul {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+    
+    .legal-content ul {
+      padding-left: 2rem;
+    }
+    
+    .legal-content li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .legal-content li::before {
+      content: "•";
+      color: var(--gold);
+      position: absolute;
+      left: -1rem;
+    }
+    
+    .last-updated {
+      text-align: right;
+      font-style: italic;
+      opacity: 0.7;
+      margin-top: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .legal-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .legal-content {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .legal-header h1 {
+        font-size: 2rem;
+      }
+      
+      .legal-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="luxury-nav">
+    <div class="nav-brand" onclick="window.location.href='index.html'">GRINDUP</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="GrindUp_AI_Income_Ebook.html">Products</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+  </nav>
+
+  <!-- Legal Content -->
+  <div class="legal-container">
+    <div class="legal-header">
+      <h1>Terms of Service</h1>
+      <p>Last Updated: January 1, 2023</p>
+    </div>
+    
+    <div class="legal-content">
+      <h2>1. Introduction</h2>
+      <p>Welcome to GrindUp ("Company", "we", "our", "us"). These Terms of Service ("Terms") govern your use of our website located at grindup7.github.io/GrindUp/ (the "Site") and our digital products.</p>
+      
+      <h2>2. Digital Products</h2>
+      <p>All digital products sold on our Site are for personal use only. You may not redistribute, resell, or share the products in any way.</p>
+      
+      <h3>2.1 License</h3>
+      <p>Upon purchase, we grant you a limited, non-exclusive, non-transferable license to use the digital products for your personal use.</p>
+      
+      <h3>2.2 Restrictions</h3>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Copy, modify, or create derivative works of the products</li>
+        <li>Use the products for any commercial purpose without our express permission</li>
+        <li>Share your login credentials or download links with others</li>
+      </ul>
+      
+      <h2>3. Payments and Refunds</h2>
+      <h3>3.1 Pricing</h3>
+      <p>All prices are in USD and are subject to change without notice. We occasionally offer promotions which may affect pricing.</p>
+      
+      <h3>3.2 Payment</h3>
+      <p>You agree to pay all fees associated with your purchase using one of our accepted payment methods. All payments are processed through secure third-party payment processors.</p>
+      
+      <h3>3.3 Refunds</h3>
+      <p>Due to the digital nature of our products, we do not offer refunds unless required by law. If you believe you're entitled to a refund under applicable law, please contact us at support@grindup.com.</p>
+      
+      <h2>4. User Responsibilities</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use our products for any illegal purpose</li>
+        <li>Reverse engineer or attempt to extract source code from our products</li>
+        <li>Share your login credentials or download links</li>
+        <li>Use our products to violate any laws or regulations</li>
+      </ul>
+      
+      <h2>5. Intellectual Property</h2>
+      <p>All content included in our products, including text, graphics, logos, and images, is the property of GrindUp or its content suppliers and protected by international copyright laws.</p>
+      
+      <h2>6. Limitation of Liability</h2>
+      <p>GrindUp shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of or inability to use our products.</p>
+      
+      <h2>7. Changes to Terms</h2>
+      <p>We reserve the right to modify these terms at any time. We'll notify you of any changes by updating the "Last Updated" date at the top of this page.</p>
+      
+      <h2>8. Governing Law</h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law provisions.</p>
+      
+      <div class="last-updated">Last updated: January 1, 2023</div>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll to top when clicking logo
+    document.querySelector('.nav-brand').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
