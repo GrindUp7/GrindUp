@@ -4,245 +4,353 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrindUp AI Income Ebook | GrindUp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* [Same CSS as index.html] */
+    :root {
+      --black: #0A0A0A;
+      --dark-gray: #1A1A1A;
+      --gold: #D4AF37;
+      --gold-light: #F5D073;
+      --white: #FFFFFF;
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Luxury texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 25%),
+        linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(10,10,10,1));
+      z-index: -1;
+    }
+
+    /* Navbar (matches homepage) */
+    .luxury-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Product Container */
     .product-container {
-      padding: 8rem 5% 5rem;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: 100px auto 50px;
+      padding: 0 5%;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 50px;
     }
-    
-    .product-gallery {
+
+    /* Product Image */
+    .product-image-container {
       position: sticky;
-      top: 100px;
+      top: 120px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 
+        0 0 15px rgba(212, 175, 55, 0.1),
+        inset 0 0 10px rgba(212, 175, 55, 0.05);
+      transition: all 0.5s ease;
     }
-    
+
+    .product-image-container:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 
+        0 0 25px rgba(212, 175, 55, 0.2),
+        inset 0 0 15px rgba(212, 175, 55, 0.1);
+    }
+
     .product-image {
       width: 100%;
-      border: 1px solid rgba(212,175,55,0.3);
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      height: auto;
+      display: block;
     }
-    
-    .product-details h1 {
+
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.5rem 1.5rem;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+    }
+
+    /* Product Details */
+    .product-title {
+      font-family: var(--font-heading);
       font-size: 2.8rem;
+      letter-spacing: 2px;
+      color: var(--gold);
       margin-bottom: 1rem;
+      position: relative;
       line-height: 1.2;
     }
-    
-    .product-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-    
-    .product-rating {
-      color: var(--gold);
-      font-size: 1.1rem;
-    }
-    
-    .product-reviews {
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-    
-    .product-price {
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin: 2rem 0;
-      font-family: var(--font-heading);
-    }
-    
-    .product-description {
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-    
-    .product-features {
-      margin: 3rem 0;
-    }
-    
-    .product-features h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    .product-features h3::after {
-      content: '';
+
+    .product-title::after {
+      content: "";
       position: absolute;
-      bottom: 0;
+      bottom: -10px;
       left: 0;
       width: 60px;
       height: 2px;
       background: var(--gold);
     }
-    
-    .product-features ul {
-      list-style: none;
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+      color: var(--gold);
+      font-size: 1.1rem;
     }
-    
-    .product-features li {
+
+    .product-rating span {
+      color: var(--white);
+      opacity: 0.7;
+      font-size: 0.9rem;
+      margin-left: 1rem;
+    }
+
+    .product-price {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin: 2rem 0;
+    }
+
+    .product-description {
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Features List */
+    .features-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 3rem;
+    }
+
+    .features-list li {
       position: relative;
       padding-left: 2rem;
       margin-bottom: 1rem;
       line-height: 1.6;
     }
-    
-    .product-features li::before {
-      content: '•';
+
+    .features-list li::before {
+      content: "•";
       position: absolute;
       left: 0;
       color: var(--gold);
       font-size: 1.5rem;
       line-height: 1;
     }
-    
-    .product-actions {
+
+    /* Action Buttons */
+    .action-buttons {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
+      margin-top: 3rem;
     }
-    
-    .buy-btn {
-      width: 100%;
-      padding: 1.2rem;
-      background: var(--gold);
+
+    .download-btn {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
       color: var(--black);
       border: none;
-      font-size: 1rem;
-      text-transform: uppercase;
+      padding: 1rem 2rem;
+      font-family: var(--font-heading);
       letter-spacing: 1px;
-      font-weight: 500;
+      text-transform: uppercase;
       cursor: pointer;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
       border-radius: 4px;
+      font-size: 1rem;
+      flex: 1;
+      text-align: center;
     }
-    
-    .buy-btn:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
     }
-    
+
     .view-reviews {
-      width: 100%;
-      padding: 1.2rem;
       background: transparent;
       border: 1px solid var(--gold);
       color: var(--gold);
-      font-size: 1rem;
-      text-transform: uppercase;
+      padding: 1rem 2rem;
+      font-family: var(--font-heading);
       letter-spacing: 1px;
+      text-transform: uppercase;
       cursor: pointer;
       transition: all 0.3s ease;
       border-radius: 4px;
+      font-size: 1rem;
+      flex: 1;
       text-align: center;
     }
-    
+
     .view-reviews:hover {
-      background: rgba(212,175,55,0.1);
+      background: rgba(212, 175, 55, 0.1);
     }
-    
+
+    /* Responsive Design */
     @media (max-width: 992px) {
       .product-container {
         grid-template-columns: 1fr;
-        gap: 3rem;
       }
       
-      .product-gallery {
+      .product-image-container {
         position: static;
+        max-width: 500px;
+        margin: 0 auto;
       }
     }
-    
+
     @media (max-width: 576px) {
-      .product-container {
-        padding: 6rem 5% 3rem;
+      .product-title {
+        font-size: 2.2rem;
       }
       
-      .product-details h1 {
-        font-size: 2.2rem;
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .download-btn, .view-reviews {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div class="loader">
-    <div class="loader-content">
-      <img src="assets/grindup-logo-gold.svg" class="loader-logo" alt="GrindUp">
-      <div class="loader-bar"></div>
-    </div>
-  </div>
-
-  <!-- Navbar -->
+  <!-- Navigation -->
   <nav class="luxury-nav">
-    <a href="index.html" class="nav-brand">GRINDUP</a>
+    <div class="nav-brand" onclick="window.location.href='index.html'">GRINDUP</div>
     <div class="nav-links">
-      <a href="index.html#products">Collections</a>
+      <a href="index.html">Home</a>
       <a href="reviews.html">Reviews</a>
-      <button class="auth-trigger">Login</button>
     </div>
   </nav>
 
-  <!-- Product Content -->
+  <!-- Product Container -->
   <main class="product-container">
-    <div class="product-gallery">
-      <img src="assets/products/ai-income-ebook.jpg" class="product-image" alt="GrindUp AI Income Ebook">
-      <div class="product-badge bestseller">BESTSELLER</div>
+    <!-- Product Image -->
+    <div class="product-image-container">
+      <img src="assets/Images/ebook-cover.jpg" alt="GrindUp AI Income Ebook" class="product-image">
+      <div class="product-badge">BESTSELLER</div>
     </div>
     
+    <!-- Product Details -->
     <div class="product-details">
-      <h1>GrindUp AI Income Ebook</h1>
-      <div class="product-meta">
-        <div class="product-rating">★★★★★</div>
-        <div class="product-reviews">1,247 reviews</div>
-      </div>
-      <div class="product-price">$1,299</div>
+      <h1 class="product-title">GrindUp AI Income Ebook</h1>
       
-      <div class="product-description">
-        <p>The ultimate guide to generating passive income streams using artificial intelligence. This 300-page ebook reveals the exact AI tools and strategies top entrepreneurs use to create automated income systems that work while you sleep.</p>
+      <div class="product-rating">
+        ★★★★★ <span>1,247 reviews</span>
       </div>
       
-      <div class="product-features">
-        <h3>What You'll Learn:</h3>
-        <ul>
-          <li>How to identify profitable AI business opportunities</li>
-          <li>Step-by-step automation frameworks</li>
-          <li>AI tools that replace expensive human labor</li>
-          <li>Scaling strategies used by 7-figure businesses</li>
-          <li>Case studies of successful AI income streams</li>
-          <li>Ethical implementation guidelines</li>
-        </ul>
-      </div>
+      <div class="product-price">$1.99</div>
       
-      <div class="product-actions">
-        <button class="buy-btn">Add to Collection</button>
-        <a href="reviews.html" class="view-reviews">Read Reviews</a>
+      <p class="product-description">
+        The ultimate guide to generating passive income streams using artificial intelligence. This 300-page ebook reveals the exact AI tools and strategies top entrepreneurs use to create automated income systems that work while you sleep.
+      </p>
+      
+      <h2 class="features-title">What You'll Learn:</h2>
+      <ul class="features-list">
+        <li>How to identify profitable AI business opportunities</li>
+        <li>Step-by-step automation frameworks</li>
+        <li>AI tools that replace expensive human labor</li>
+        <li>Scaling strategies used by 7-figure businesses</li>
+        <li>Case studies of successful AI income streams</li>
+        <li>Ethical implementation guidelines</li>
+        <li>Legal considerations for AI businesses</li>
+        <li>Future-proofing your income streams</li>
+      </ul>
+      
+      <div class="action-buttons">
+        <button class="download-btn">Download Now</button>
+        <button class="view-reviews" onclick="window.location.href='reviews.html'">Read Reviews</button>
       </div>
     </div>
   </main>
 
   <script>
-    // ===== LOADER =====
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.querySelector('.loader').style.opacity = '0';
-        setTimeout(function() {
-          document.querySelector('.loader').style.display = 'none';
-        }, 500);
-      }, 1000);
+    // Smooth scroll to top when clicking logo
+    document.querySelector('.nav-brand').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
 
-    // ===== BUY BUTTON =====
-    document.querySelector('.buy-btn').addEventListener('click', function() {
-      alert('This would connect to your payment processor and deliver the PDF');
+    // Download button functionality
+    document.querySelector('.download-btn').addEventListener('click', function() {
+      alert('Thank you for your purchase! Your PDF download will begin shortly.');
+      // In a real implementation, this would trigger the download
+      // window.location.href = 'downloads/ai-income-ebook.pdf';
     });
   </script>
 </body>
