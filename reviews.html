@@ -31,7 +31,6 @@
       overflow-x: hidden;
     }
 
-    /* Luxury texture overlay */
     body::before {
       content: "";
       position: fixed;
@@ -45,7 +44,6 @@
       z-index: -1;
     }
 
-    /* Navbar (matches other pages) */
     .luxury-nav {
       display: flex;
       justify-content: space-between;
@@ -80,7 +78,6 @@
       color: var(--gold);
     }
 
-    /* Main Content */
     .reviews-page {
       max-width: 1200px;
       margin: 100px auto 50px;
@@ -106,7 +103,6 @@
       opacity: 0.8;
     }
 
-    /* Stats Overview */
     .stats-overview {
       display: flex;
       justify-content: space-around;
@@ -135,7 +131,6 @@
       letter-spacing: 1px;
     }
 
-    /* Rating Distribution */
     .rating-distribution {
       background: var(--dark-gray);
       padding: 2rem;
@@ -183,7 +178,6 @@
       font-size: 0.9rem;
     }
 
-    /* Reviews Grid */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -276,7 +270,6 @@
       transform: scale(1.1);
     }
 
-    /* Pagination */
     .pagination {
       display: flex;
       justify-content: center;
@@ -308,7 +301,6 @@
       border-color: var(--gold);
     }
 
-    /* Review Form */
     .review-form-container {
       max-width: 800px;
       margin: 0 auto;
@@ -391,7 +383,6 @@
       background: var(--gold-light);
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .reviews-grid {
         grid-template-columns: 1fr;
@@ -445,15 +436,15 @@
     <!-- Stats Overview -->
     <div class="stats-overview">
       <div class="stat-item">
-        <div class="stat-number">5,000+</div>
+        <div class="stat-number" id="total-reviews">5,000+</div>
         <div class="stat-label">Total Reviews</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">4.8</div>
+        <div class="stat-number" id="avg-rating">4.8</div>
         <div class="stat-label">Average Rating</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">97%</div>
+        <div class="stat-number" id="recommend-rate">97%</div>
         <div class="stat-label">Would Recommend</div>
       </div>
     </div>
@@ -464,37 +455,37 @@
       <div class="rating-bar">
         <div class="rating-stars">★★★★★</div>
         <div class="rating-progress">
-          <div class="rating-progress-fill" style="width: 60%;"></div>
+          <div class="rating-progress-fill" id="rating-5" style="width: 60%;"></div>
         </div>
-        <div class="rating-count">3,000+</div>
+        <div class="rating-count" id="count-5">3,000+</div>
       </div>
       <div class="rating-bar">
         <div class="rating-stars">★★★★☆</div>
         <div class="rating-progress">
-          <div class="rating-progress-fill" style="width: 25%;"></div>
+          <div class="rating-progress-fill" id="rating-4" style="width: 25%;"></div>
         </div>
-        <div class="rating-count">1,250+</div>
+        <div class="rating-count" id="count-4">1,250+</div>
       </div>
       <div class="rating-bar">
         <div class="rating-stars">★★★☆☆</div>
         <div class="rating-progress">
-          <div class="rating-progress-fill" style="width: 10%;"></div>
+          <div class="rating-progress-fill" id="rating-3" style="width: 10%;"></div>
         </div>
-        <div class="rating-count">500+</div>
+        <div class="rating-count" id="count-3">500+</div>
       </div>
       <div class="rating-bar">
         <div class="rating-stars">★★☆☆☆</div>
         <div class="rating-progress">
-          <div class="rating-progress-fill" style="width: 3%;"></div>
+          <div class="rating-progress-fill" id="rating-2" style="width: 3%;"></div>
         </div>
-        <div class="rating-count">150+</div>
+        <div class="rating-count" id="count-2">150+</div>
       </div>
       <div class="rating-bar">
         <div class="rating-stars">★☆☆☆☆</div>
         <div class="rating-progress">
-          <div class="rating-progress-fill" style="width: 2%;"></div>
+          <div class="rating-progress-fill" id="rating-1" style="width: 2%;"></div>
         </div>
-        <div class="rating-count">100+</div>
+        <div class="rating-count" id="count-1">100+</div>
       </div>
     </div>
 
@@ -549,222 +540,75 @@
     </div>
   </div>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
   <script>
-    // Sample review data (in a real app, this would come from a database)
-    const allReviews = [
-      // 5-star reviews (60%)
-      {
-        id: 1,
-        name: "James W.",
-        rating: 5,
-        date: "Oct 15, 2023",
-        product: "Crypto Blackbook",
-        text: "The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques. The institutional-grade knowledge in this course is unmatched. The advanced charting techniques alone were worth the investment.",
-        images: ["review-proof1.jpg", "review-proof2.jpg"],
-        verified: true
-      },
-      {
-        id: 2,
-        name: "Sarah K.",
-        rating: 5,
-        date: "Sep 28, 2023",
-        product: "AI Income Ebook",
-        text: "The AI Income Ebook gave me practical strategies to implement AI in my business immediately. Within 30 days I automated $8,000/month in recurring tasks. The case studies were particularly valuable for understanding real-world applications.",
-        images: [],
-        verified: true
-      },
-      // 4-star reviews (25%)
-      {
-        id: 3,
-        name: "Michael T.",
-        rating: 4,
-        date: "Nov 5, 2023",
-        product: "Wealth Foundations",
-        text: "Great content but the PDF formatting looks odd on my Kindle. Strategies work though - up $2,100 in 3 weeks. The tax section alone saved me thousands in deductions.",
-        images: [],
-        verified: true
-      },
-      // 3-star reviews (10%)
-      {
-        id: 4,
-        name: "Alexandra P.",
-        rating: 3,
-        date: "Dec 12, 2023",
-        product: "AI Income Ebook",
-        text: "Some good info but very basic if you've traded before. The DeFi section was helpful though. Made about $300 but took way more time than advertised.",
-        images: [],
-        verified: true
-      },
-      // 2-star reviews (3%)
-      {
-        id: 5,
-        name: "David R.",
-        rating: 2,
-        date: "Jan 3, 2024",
-        product: "Crypto Blackbook",
-        text: "Expected more for the price. Some strategies are outdated in current market conditions. Might work for others but didn't for me because I'm a beginner.",
-        images: [],
-        verified: true
-      },
-      // 1-star reviews (2%)
-      {
-        id: 6,
-        name: "Emma L.",
-        rating: 1,
-        date: "Feb 18, 2024",
-        product: "Wealth Foundations",
-        text: "Very disappointed. The strategies didn't work for me at all. Customer service was unhelpful when I requested a refund.",
-        images: [],
-        verified: false
-      },
-      // Add more reviews following the same pattern...
-      // In a real implementation, you would have thousands of reviews
-      // For this example, we'll generate more reviews dynamically
-    ];
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAsU4EKJZX_bgEtjn8t1LR_x07zW2fvWF4",
+      authDomain: "grindup-reviews.firebaseapp.com",
+      projectId: "grindup-reviews",
+      storageBucket: "grindup-reviews.appspot.com",
+      messagingSenderId: "725467053077",
+      appId: "1:725467053077:web:d1439f385afaee0370e21c"
+    };
 
-    // Generate more reviews to simulate 5,000+ reviews
-    function generateMoreReviews() {
-      const products = ["AI Income Ebook", "Crypto Blackbook", "Wealth Foundations"];
-      const firstNames = ["James", "Sarah", "Michael", "Alexandra", "David", "Emma", "John", "Emily", "Robert", "Olivia"];
-      const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson"];
-      
-      // Generate 5-star reviews (3000 total)
-      for (let i = 7; i <= 100; i++) {
-        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-        const product = products[Math.floor(Math.random() * products.length)];
-        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        
-        const reviewTexts = [
-          `${product} is absolutely worth every penny! I made $${Math.floor(Math.random() * 9000) + 1000} in just ${Math.floor(Math.random() * 6) + 2} weeks following the strategies.`,
-          `Life-changing material. As a ${["college student", "single mom", "retiree", "small business owner"][Math.floor(Math.random() * 4)]}, this gave me the financial freedom I needed.`,
-          `The ${["arbitrage", "scalping", "long-term investment", "AI bot"][Math.floor(Math.random() * 4)]} strategies work exactly as described. My only complaint is I wish I bought this sooner.`,
-          `After trying ${Math.floor(Math.random() * 5) + 1} other courses, this is the only one that actually delivered results. ${Math.floor(Math.random() * 4000) + 1000}% ROI so far.`
-        ];
-        
-        allReviews.push({
-          id: i,
-          name: `${firstName} ${lastName.charAt(0)}.`,
-          rating: 5,
-          date: date,
-          product: product,
-          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
-          images: [],
-          verified: Math.random() > 0.3
-        });
-      }
-      
-      // Generate 4-star reviews (1250 total)
-      for (let i = 101; i <= 150; i++) {
-        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-        const product = products[Math.floor(Math.random() * products.length)];
-        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        
-        const reviewTexts = [
-          `Great content but the ${["PDF formatting", "video quality", "Excel templates", "mobile app"][Math.floor(Math.random() * 4)]} could be improved. Still made $${Math.floor(Math.random() * 5000) + 500} though!`,
-          `Mostly excellent, though some ${["screenshots", "examples", "case studies", "instructions"][Math.floor(Math.random() * 4)]} are outdated. The core concepts are solid.`,
-          `Wish there was more on ${["altcoin selection", "tax strategies", "risk management", "market analysis"][Math.floor(Math.random() * 4)]}, but what's included is very helpful.`,
-          `The ${product} delivered ${Math.floor(Math.random() * 30) + 10}% returns last quarter. Knocking one star because ${["customer support", "download process", "community access", "bonus materials"][Math.floor(Math.random() * 4)]} could be better.`
-        ];
-        
-        allReviews.push({
-          id: i,
-          name: `${firstName} ${lastName.charAt(0)}.`,
-          rating: 4,
-          date: date,
-          product: product,
-          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
-          images: [],
-          verified: Math.random() > 0.3
-        });
-      }
-      
-      // Generate 3-star reviews (500 total)
-      for (let i = 151; i <= 180; i++) {
-        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-        const product = products[Math.floor(Math.random() * products.length)];
-        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        
-        const reviewTexts = [
-          `It's okay. Made about $${Math.floor(Math.random() * 500) + 100} but took way more time than advertised. Your mileage may vary.`,
-          `Some good info but very basic if you've ${["traded before", "read other finance books", "taken similar courses", "worked in finance"][Math.floor(Math.random() * 4)]}.`,
-          `Decent introduction but lacks ${["advanced techniques", "practical examples", "detailed explanations", "real-world applications"][Math.floor(Math.random() * 4)]}.`,
-          `The ${product} is average. I expected more for the price. Made a small profit but nothing extraordinary.`
-        ];
-        
-        allReviews.push({
-          id: i,
-          name: `${firstName} ${lastName.charAt(0)}.`,
-          rating: 3,
-          date: date,
-          product: product,
-          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
-          images: [],
-          verified: Math.random() > 0.5
-        });
-      }
-      
-      // Generate 2-star reviews (150 total)
-      for (let i = 181; i <= 190; i++) {
-        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-        const product = products[Math.floor(Math.random() * products.length)];
-        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        
-        const reviewTexts = [
-          `Expected more for the price. ${["Strategies didn't work in current market", "Information was too basic", "Customer support was unresponsive", "Materials were poorly organized"][Math.floor(Math.random() * 4)]}.`,
-          `Might work for others but didn't for me because ${["I'm a beginner", "the market changed", "the instructions were unclear", "it required more capital than stated"][Math.floor(Math.random() * 4)]}.`,
-          `Very overhyped. The ${["results", "strategies", "examples", "claims"][Math.floor(Math.random() * 4)]} don't match reality in my experience.`,
-          `Disappointed with the ${product}. Lost ${Math.floor(Math.random() * 500) + 100} trying to follow the advice.`
-        ];
-        
-        allReviews.push({
-          id: i,
-          name: `${firstName} ${lastName.charAt(0)}.`,
-          rating: 2,
-          date: date,
-          product: product,
-          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
-          images: [],
-          verified: Math.random() > 0.7
-        });
-      }
-      
-      // Generate 1-star reviews (100 total)
-      for (let i = 191; i <= 200; i++) {
-        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-        const product = products[Math.floor(Math.random() * products.length)];
-        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        
-        const reviewTexts = [
-          `Very disappointed. The strategies didn't work for me at all. Customer service was unhelpful when I requested a refund.`,
-          `Complete waste of money. The ${product} is just repackaged information you can find for free online.`,
-          `Scam alert! Lost $${Math.floor(Math.random() * 1000) + 200} following this advice. Stay away!`,
-          `The worst financial advice I've ever received. ${["Lost money immediately", "Strategies are dangerous", "Completely unrealistic", "Author doesn't respond to complaints"][Math.floor(Math.random() * 4)]}.`
-        ];
-        
-        allReviews.push({
-          id: i,
-          name: `${firstName} ${lastName.charAt(0)}.`,
-          rating: 1,
-          date: date,
-          product: product,
-          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
-          images: [],
-          verified: false
-        });
-      }
-    }
-
-    // Generate the additional reviews
-    generateMoreReviews();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
     // Pagination variables
     const reviewsPerPage = 12;
     let currentPage = 1;
+    let allReviews = [];
+
+    // Load reviews from Firestore
+    function loadReviews() {
+      db.collection("reviews")
+        .where("verified", "==", true)
+        .orderBy("date", "desc")
+        .get()
+        .then((querySnapshot) => {
+          allReviews = [];
+          querySnapshot.forEach((doc) => {
+            allReviews.push({
+              id: doc.id,
+              ...doc.data()
+            });
+          });
+          displayReviews(currentPage);
+          updateStats();
+        })
+        .catch((error) => {
+          console.error("Error loading reviews: ", error);
+        });
+    }
+
+    // Calculate and update statistics
+    function updateStats() {
+      const totalReviews = allReviews.length;
+      const totalRating = allReviews.reduce((sum, review) => sum + review.rating, 0);
+      const avgRating = totalReviews > 0 ? (totalRating / totalReviews).toFixed(1) : 0;
+      
+      // Calculate rating distribution
+      const ratingCounts = [0, 0, 0, 0, 0];
+      allReviews.forEach(review => {
+        ratingCounts[review.rating - 1]++;
+      });
+
+      // Update UI
+      document.getElementById('total-reviews').textContent = totalReviews.toLocaleString();
+      document.getElementById('avg-rating').textContent = avgRating;
+      
+      // Update rating distribution bars
+      for (let i = 1; i <= 5; i++) {
+        const count = ratingCounts[i - 1];
+        const percentage = totalReviews > 0 ? (count / totalReviews * 100) : 0;
+        document.getElementById(`rating-${i}`).style.width = `${percentage}%`;
+        document.getElementById(`count-${i}`).textContent = count.toLocaleString();
+      }
+    }
 
     // Display reviews for current page
     function displayReviews(page) {
@@ -788,16 +632,6 @@
         // Generate verified badge if applicable
         const verifiedBadge = review.verified ? '<span style="color: var(--gold); font-size: 0.8rem;"> ✓ Verified Buyer</span>' : '';
         
-        // Generate review images if available
-        let imagesHTML = '';
-        if (review.images.length > 0) {
-          imagesHTML = '<div class="review-images">';
-          review.images.forEach(img => {
-            imagesHTML += `<img src="assets/images/${img}" alt="Proof" class="review-image">`;
-          });
-          imagesHTML += '</div>';
-        }
-        
         reviewCard.innerHTML = `
           <div class="reviewer-info">
             <img src="assets/images/user${Math.floor(Math.random() * 6) + 1}.jpg" alt="${review.name}" class="reviewer-avatar">
@@ -813,13 +647,11 @@
           <div class="review-text">
             <p>${review.text}</p>
           </div>
-          ${imagesHTML}
         `;
         
         reviewsContainer.appendChild(reviewCard);
       });
       
-      // Update pagination buttons
       updatePagination();
     }
 
@@ -877,9 +709,6 @@
       }
     }
 
-    // Initialize
-    displayReviews(currentPage);
-
     // Star rating functionality for the form
     const stars = document.querySelectorAll('.rating-star');
     const ratingValue = document.getElementById('rating-value');
@@ -917,18 +746,45 @@
     });
 
     // Form submission
-    document.getElementById('review-form').addEventListener('submit', function(e) {
+    document.getElementById('review-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('Thank you for your review! It will appear after moderation.');
-      this.reset();
       
-      // Reset stars
-      stars.forEach(star => {
-        star.style.color = 'var(--white)';
-        star.style.opacity = '0.3';
-      });
-      ratingValue.value = '';
+      const name = document.getElementById('reviewer-name').value;
+      const email = document.getElementById('reviewer-email').value;
+      const product = document.getElementById('review-product').value;
+      const rating = document.getElementById('rating-value').value;
+      const text = document.getElementById('review-text').value;
+
+      try {
+        // Save to Firebase
+        await db.collection("reviews").add({
+          name: name,
+          email: email,
+          product: product,
+          rating: parseInt(rating),
+          text: text,
+          date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+          verified: false
+        });
+        
+        alert('Thank you! Your review will appear after approval.');
+        this.reset();
+        
+        // Reset stars
+        stars.forEach(star => {
+          star.style.color = 'var(--white)';
+          star.style.opacity = '0.3';
+        });
+        ratingValue.value = '';
+        
+      } catch (error) {
+        alert('Error submitting review. Please try again.');
+        console.error(error);
+      }
     });
+
+    // Initialize
+    loadReviews();
 
     // Smooth scroll to top when clicking logo
     document.querySelector('.nav-brand').addEventListener('click', function(e) {
@@ -937,14 +793,6 @@
         top: 0,
         behavior: 'smooth'
       });
-    });
-
-    // Image click to enlarge (would need modal implementation)
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('review-image')) {
-        // In a real implementation, this would open a lightbox/modal
-        console.log('Opening image viewer for:', e.target.src);
-      }
     });
   </script>
 </body>
