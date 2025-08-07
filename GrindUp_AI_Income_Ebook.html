@@ -207,6 +207,73 @@
       line-height: 1;
     }
 
+    /* Payment Options */
+    .payment-options {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+    }
+    
+    .payment-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    
+    .payment-methods {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .payment-btn {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .stripe-btn {
+      background: #635bff;
+      color: white;
+    }
+    
+    .paypal-btn {
+      background: #ffc439;
+      color: #001d6b;
+    }
+    
+    .payment-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .payment-btn img {
+      height: 20px;
+    }
+    
+    .secure-note {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    
+    .secure-note img {
+      height: 16px;
+    }
+
     /* Action Buttons */
     .action-buttons {
       display: flex;
@@ -279,7 +346,11 @@
         flex-direction: column;
       }
       
-      .download-btn, .view-reviews {
+      .payment-methods {
+        flex-direction: column;
+      }
+      
+      .download-btn, .view-reviews, .payment-btn {
         width: 100%;
       }
     }
@@ -299,7 +370,7 @@
   <main class="product-container">
     <!-- Product Image -->
     <div class="product-image-container">
-      <img src="assets/Images/ebook-cover.jpg" alt="GrindUp AI Income Ebook" class="product-image">
+      <img src="assets/images/ebook-cover.jpg" alt="GrindUp AI Income Ebook" class="product-image">
       <div class="product-badge">BESTSELLER</div>
     </div>
     
@@ -328,6 +399,28 @@
         <li>Legal considerations for AI businesses</li>
         <li>Future-proofing your income streams</li>
       </ul>
+
+      <!-- Payment Options Section -->
+      <div class="payment-options">
+        <h3 class="payment-title">Secure Payment Options</h3>
+        <div class="payment-methods">
+          <!-- Stripe Payment Button -->
+          <button id="stripe-payment" class="payment-btn stripe-btn">
+            <img src="assets/images/stripe-logo.png" alt="Stripe">
+            Pay with Card
+          </button>
+          
+          <!-- PayPal Payment Button -->
+          <button id="paypal-payment" class="payment-btn paypal-btn">
+            <img src="assets/images/paypal-logo.png" alt="PayPal">
+            Pay with PayPal
+          </button>
+        </div>
+        <p class="secure-note">
+          <img src="assets/images/lock-icon.png" alt="Secure">
+          All transactions are secured with 256-bit SSL encryption
+        </p>
+      </div>
       
       <div class="action-buttons">
         <button class="download-btn">Download Now</button>
@@ -351,6 +444,15 @@
       alert('Thank you for your purchase! Your PDF download will begin shortly.');
       // In a real implementation, this would trigger the download
       // window.location.href = 'downloads/ai-income-ebook.pdf';
+    });
+
+    // Payment buttons functionality
+    document.getElementById('stripe-payment').addEventListener('click', function() {
+      alert('Stripe payment gateway would open here');
+    });
+    
+    document.getElementById('paypal-payment').addEventListener('click', function() {
+      alert('PayPal payment gateway would open here');
     });
   </script>
 </body>
