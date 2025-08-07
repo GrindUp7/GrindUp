@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews | GrindUp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* [Same CSS as index.html] */
+    .reviews-page {
+      padding: 8rem 5% 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .page-header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .page-header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .all-reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .review-card {
+      background: var(--medium-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      border: 1px solid rgba(212,175,55,0.1);
+    }
+    
+    .review-product {
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .review-form-container {
+      background: var(--dark-gray);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .review-form-container h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      background: var(--black);
+      border: 1px solid var(--medium-gray);
+      color: var(--white);
+      font-family: var(--font-body);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .rating-stars {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    
+    .rating-stars .star {
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      cursor: pointer;
+    }
+    
+    .submit-review {
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .all-reviews {
+        grid-template-columns: 1fr;
+      }
+      
+      .review-form-container {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-content">
+      <img src="assets/grindup-logo-gold.svg" class="loader-logo" alt="GrindUp">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
 
+  <!-- Navbar -->
+  <nav class="luxury-nav">
+    <a href="index.html" class="nav-brand">GRINDUP</a>
+    <div class="nav-links">
+      <a href="index.html#products">Collections</a>
+      <a href="reviews.html">Reviews</a>
+      <button class="auth-trigger">Login</button>
+    </div>
+  </nav>
+
+  <!-- Reviews Content -->
+  <div class="reviews-page">
+    <div class="page-header">
+      <h1>Customer Testimonials</h1>
+      <p>Read what our members say about GrindUp products</p>
+    </div>
+    
+    <div class="all-reviews">
+      <!-- Review 1 -->
+      <div class="review-card">
+        <div class="review-product">GrindUp AI Income Ebook</div>
+        <div class="reviewer-info">
+          <img src="assets/reviews/user1.jpg" alt="Alex M.">
+          <div>
+            <p class="reviewer-name">Alex M.</p>
+            <p class="reviewer-meta">Verified Buyer ★★★★★ • Nov 5, 2023</p>
+          </div>
+        </div>
+        <div class="review-text">
+          <p>This ebook helped me automate my first $5k/month within 60 days. The AI tools recommended are game-changers. I've since built 3 additional income streams using the same framework.</p>
+        </div>
+      </div>
+      
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="review-product">Crypto Blackbook</div>
+        <div class="reviewer-info">
+          <img src="assets/reviews/user2.jpg" alt="Sarah K.">
+          <div>
+            <p class="reviewer-name">Sarah K.</p>
+            <p class="reviewer-meta">Verified Buyer ★★★★☆ • Oct 28, 2023</p>
+          </div>
+        </div>
+        <div class="review-text">
+          <p>The on-chain analysis techniques alone were worth the price. I've avoided two major market downturns thanks to the indicators taught in this course.</p>
+        </div>
+      </div>
+      
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="review-product">GrindUp AI Income Ebook</div>
+        <div class="reviewer-info">
+          <img src="assets/reviews/user3.jpg" alt="James T.">
+          <div>
+            <p class="reviewer-name">James T.</p>
+            <p class="reviewer-meta">Verified Buyer ★★★★★ • Oct 15, 2023</p>
+          </div>
+        </div>
+        <div class="review-text">
+          <p>I was skeptical about AI tools before this, but the step-by-step implementation guides made it so easy. I automated 80% of my client work and doubled my income while working less.</p>
+        </div>
+      </div>
+      
+      <!-- Review 4 -->
+      <div class="review-card">
+        <div class="review-product">Wealth Foundations</div>
+        <div class="reviewer-info">
+          <img src="assets/reviews/user4.jpg" alt="Priya S.">
+          <div>
+            <p class="reviewer-name">Priya S.</p>
+            <p class="reviewer-meta">Verified Buyer ★★★★☆ • Sep 30, 2023</p>
+          </div>
+        </div>
+        <div class="review-text">
+          <p>For a free course, this is incredible value. The mindset shifts alone helped me negotiate a 30% raise at my job. Now I'm implementing the investment strategies.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="review-form-container">
+      <h2>Share Your Experience</h2>
+      <form id="new-review-form">
+        <div class="form-group">
+          <label for="review-name">Your Name</label>
+          <input type="text" id="review-name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="review-product">Product Reviewed</label>
+          <select id="review-product" required>
+            <option value="">Select a product</option>
+            <option value="GrindUp AI Income Ebook">GrindUp AI Income Ebook</option>
+            <option value="Crypto Blackbook">Crypto Blackbook</option>
+            <option value="Wealth Foundations">Wealth Foundations</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Your Rating</label>
+          <div class="rating-stars">
+            <span class="star" data-rating="1">☆</span>
+            <span class="star" data-rating="2">☆</span>
+            <span class="star" data-rating="3">☆</span>
+            <span class="star" data-rating="4">☆</span>
+            <span class="star" data-rating="5">☆</span>
+          </div>
+          <input type="hidden" id="review-rating" value="0" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="review-text">Your Review</label>
+          <textarea id="review-text" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-review">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.loader').style.opacity = '0';
+        setTimeout(function() {
+          document.querySelector('.loader').style.display = 'none';
+        }, 500);
+      }, 1000);
+    });
+
+    // ===== STAR RATING =====
+    document.querySelectorAll('.rating-stars .star').forEach(star => {
+      star.addEventListener('click', function() {
+        const rating = this.dataset.rating;
+        document.getElementById('review-rating').value = rating;
+        
+        // Update star display
+        document.querySelectorAll('.rating-stars .star').forEach((s, i) => {
+          s.textContent = i < rating ? '★' : '☆';
+        });
+      });
+    });
+
+    // ===== FORM SUBMISSION =====
+    document.getElementById('new-review-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // In a real app, this would send to your backend
+      alert('Thank you for your review! It will appear after approval.');
+      this.reset();
+      
+      // Reset stars
+      document.querySelectorAll('.rating-stars .star').forEach(star => {
+        star.textContent = '☆';
+      });
+      document.getElementById('review-rating').value = '0';
+    });
+  </script>
+</body>
+</html>
