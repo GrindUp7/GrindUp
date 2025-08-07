@@ -4,41 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crypto Blackbook | GrindUp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* [Same CSS as index.html] */
+    /* [Same CSS styles as index.html] */
     .product-container {
-      padding: 10%;
+      padding: 5%;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
+    
+    .product-gallery {
+      position: sticky;
+      top: 100px;
+    }
+    
     .product-image {
       width: 100%;
+      border: 1px solid rgba(212,175,55,0.3);
+    }
+    
+    .product-details h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .price {
+      font-size: 2rem;
+      color: var(--gold);
+      margin: 1.5rem 0;
+    }
+    
+    .buy-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 2rem 0;
+      cursor: pointer;
+    }
+    
+    .features li {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .features li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+    
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="luxury-nav">
     <a href="index.html">← Back to Collections</a>
-    <div class="logo">GRINDUP</div>
+    <div class="nav-brand">GRINDUP</div>
   </nav>
 
+  <!-- Product Content -->
   <main class="product-container">
     <div class="product-gallery">
-      <img src="product1-full.jpg" class="product-image">
+      <img src="assets/products/crypto-blackbook.jpg" class="product-image" alt="Crypto Blackbook">
     </div>
+    
     <div class="product-details">
+      <div class="product-badge bestseller">BESTSELLER</div>
       <h1>Crypto Blackbook</h1>
-      <p class="price">$1,499</p>
+      <div class="product-rating">★★★★★ (892 reviews)</div>
+      <div class="price">$1,499</div>
+      
       <button class="buy-btn">Add to Collection</button>
+      
       <div class="description">
-        <p>The ultimate cryptocurrency trading guide used by hedge funds...</p>
+        <p>The ultimate guide to cryptocurrency trading strategies used by hedge funds. This 300-page manual reveals the exact methods institutional traders use to generate consistent profits in volatile crypto markets.</p>
+      </div>
+      
+      <div class="features">
+        <h3>What You'll Learn:</h3>
+        <ul>
+          <li>Advanced technical analysis strategies</li>
+          <li>On-chain analysis techniques</li>
+          <li>Market cycle predictions</li>
+          <li>Portfolio management frameworks</li>
+          <li>Risk management protocols</li>
+        </ul>
       </div>
     </div>
   </main>
 
   <script>
-    // [Same JS as index.html]
+    // [Same JS as index.html for consistency]
+    // Loader animation
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.loader').style.opacity = '0';
+        setTimeout(function() {
+          document.querySelector('.loader').style.display = 'none';
+        }, 500);
+      }, 500); // Shorter load time for product pages
+    });
+    
+    // Buy button functionality
+    document.querySelector('.buy-btn').addEventListener('click', function() {
+      alert('This would connect to your payment processor');
+    });
   </script>
 </body>
 </html>
