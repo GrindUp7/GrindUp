@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | GrindUp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --dark-gray: #1A1A1A;
+      --gold: #D4AF37;
+      --gold-light: #F5D073;
+      --white: #FFFFFF;
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Luxury texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 25%),
+        linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(10,10,10,1));
+      z-index: -1;
+    }
+
+    /* Navbar (matches other pages) */
+    .luxury-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Contact Content */
+    .contact-container {
+      max-width: 1000px;
+      margin: 100px auto 50px;
+      padding: 0 5%;
+    }
+    
+    .contact-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .contact-header h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+    
+    .contact-header p {
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.8;
+    }
+    
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    .contact-info {
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .contact-info h2 {
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+    
+    .contact-method {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-icon img {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .contact-details h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+    }
+    
+    .contact-details p, .contact-details a {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+    
+    .contact-details a:hover {
+      color: var(--gold);
+    }
+    
+    .contact-form-container {
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .contact-form-container h2 {
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      background: var(--black);
+      border: 1px solid rgba(212,175,55,0.2);
+      color: var(--white);
+      font-family: var(--font-body);
+      border-radius: 4px;
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 1rem 2rem;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .submit-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-header h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .contact-header h1 {
+        font-size: 2rem;
+      }
+      
+      .contact-method {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .contact-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="luxury-nav">
+    <div class="nav-brand" onclick="window.location.href='index.html'">GRINDUP</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="GrindUp_AI_Income_Ebook.html">Products</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+  </nav>
+
+  <!-- Contact Content -->
+  <div class="contact-container">
+    <div class="contact-header">
+      <h1>Contact Us</h1>
+      <p>We're here to help with any questions or concerns you may have</p>
+    </div>
+    
+    <div class="contact-content">
+      <div class="contact-info">
+        <h2>Get In Touch</h2>
+        
+        <div class="contact-method">
+          <div class="contact-icon">
+            <img src="assets/icons/email-icon.png" alt="Email">
+          </div>
+          <div class="contact-details">
+            <h3>Customer Support</h3>
+            <a href="mailto:support@grindup.com">support@grindup.com</a>
+            <p>Response time: Typically within 6 hours</p>
+          </div>
+        </div>
+        
+        <div class="contact-method">
+          <div class="contact-icon">
+            <img src="assets/icons/business-icon.png" alt="Business">
+          </div>
+          <div class="contact-details">
+            <h3>Business Inquiries</h3>
+            <a href="mailto:partnerships@grindup.com">partnerships@grindup.com</a>
+          </div>
+        </div>
+        
+        <div class="contact-method">
+          <div class="contact-icon">
+            <img src="assets/icons/location-icon.png" alt="Location">
+          </div>
+          <div class="contact-details">
+            <h3>Mailing Address</h3>
+            <p>GrindUp LLC<br>
+            123 Business Avenue<br>
+            Suite 456<br>
+            New York, NY 10001</p>
+          </div>
+        </div>
+        
+        <div class="contact-method">
+          <div class="contact-icon">
+            <img src="assets/icons/clock-icon.png" alt="Hours">
+          </div>
+          <div class="contact-details">
+            <h3>Support Hours</h3>
+            <p>Monday-Friday: 9AM-6PM EST<br>
+            Weekends: Limited availability</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form-container">
+        <h2>Send Us a Message</h2>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" required>
+              <option value="">Select a subject</option>
+              <option value="support">Product Support</option>
+              <option value="sales">Sales Inquiry</option>
+              <option value="partnership">Partnership Opportunity</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll to top when clicking logo
+    document.querySelector('.nav-brand').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will respond as soon as possible.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
