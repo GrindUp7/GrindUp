@@ -89,7 +89,7 @@
 
     .page-header {
       text-align: center;
-      margin-bottom: 5rem;
+      margin-bottom: 3rem;
     }
 
     .page-header h1 {
@@ -106,12 +106,89 @@
       opacity: 0.8;
     }
 
+    /* Stats Overview */
+    .stats-overview {
+      display: flex;
+      justify-content: space-around;
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Rating Distribution */
+    .rating-distribution {
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .rating-distribution h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold-light);
+    }
+
+    .rating-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .rating-stars {
+      width: 100px;
+      color: var(--gold);
+    }
+
+    .rating-progress {
+      flex-grow: 1;
+      height: 20px;
+      background: var(--medium-gray);
+      border-radius: 10px;
+      margin: 0 1rem;
+      overflow: hidden;
+    }
+
+    .rating-progress-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    .rating-count {
+      width: 80px;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+
     /* Reviews Grid */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 2rem;
-      margin-bottom: 5rem;
+      margin-bottom: 3rem;
     }
 
     .review-card {
@@ -199,6 +276,38 @@
       transform: scale(1.1);
     }
 
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .page-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--dark-gray);
+      border: 1px solid rgba(212,175,55,0.2);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .page-btn:hover {
+      background: rgba(212,175,55,0.1);
+    }
+
+    .page-btn.active {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
     /* Review Form */
     .review-form-container {
       max-width: 800px;
@@ -280,7 +389,6 @@
 
     .submit-review:hover {
       background: var(--gold-light);
-      transform: translateY(-2px);
     }
 
     /* Responsive Design */
@@ -291,6 +399,11 @@
       
       .page-header h1 {
         font-size: 2.5rem;
+      }
+      
+      .stats-overview {
+        flex-direction: column;
+        gap: 1.5rem;
       }
     }
 
@@ -318,128 +431,81 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="GrindUp_AI_Income_Ebook.html">Products</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
   <!-- Main Content -->
   <div class="reviews-page">
     <div class="page-header">
-      <h1>Elite Testimonials</h1>
-      <p>Hear directly from our members about their experiences with GrindUp products</p>
+      <h1>Customer Reviews</h1>
+      <p>Join 5,000+ members who transformed their financial future</p>
     </div>
 
-    <div class="reviews-grid">
-      <!-- Review 1 -->
-      <div class="review-card">
-        <div class="reviewer-info">
-          <img src="assets/images/user1.jpg" alt="James W." class="reviewer-avatar">
-          <div class="reviewer-details">
-            <h3>James W.</h3>
-            <div class="review-meta">
-              <span class="review-rating">★★★★★</span>
-              <span class="review-date">Oct 15, 2023</span>
-            </div>
-          </div>
-        </div>
-        <span class="review-product">Crypto Blackbook</span>
-        <div class="review-text">
-          <p>The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques. The institutional-grade knowledge in this course is unmatched. The advanced charting techniques alone were worth the investment.</p>
-        </div>
-        <div class="review-images">
-          <img src="assets/images/review-proof1.jpg" alt="Proof" class="review-image">
-          <img src="assets/images/review-proof2.jpg" alt="Proof" class="review-image">
-        </div>
+    <!-- Stats Overview -->
+    <div class="stats-overview">
+      <div class="stat-item">
+        <div class="stat-number">5,000+</div>
+        <div class="stat-label">Total Reviews</div>
       </div>
+      <div class="stat-item">
+        <div class="stat-number">4.8</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">97%</div>
+        <div class="stat-label">Would Recommend</div>
+      </div>
+    </div>
 
-      <!-- Review 2 -->
-      <div class="review-card">
-        <div class="reviewer-info">
-          <img src="assets/images/user2.jpg" alt="Sarah K." class="reviewer-avatar">
-          <div class="reviewer-details">
-            <h3>Sarah K.</h3>
-            <div class="review-meta">
-              <span class="review-rating">★★★★☆</span>
-              <span class="review-date">Sep 28, 2023</span>
-            </div>
-          </div>
+    <!-- Rating Distribution -->
+    <div class="rating-distribution">
+      <h2>Rating Breakdown</h2>
+      <div class="rating-bar">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" style="width: 60%;"></div>
         </div>
-        <span class="review-product">AI Income Ebook</span>
-        <div class="review-text">
-          <p>The AI Income Ebook gave me practical strategies to implement AI in my business immediately. Within 30 days I automated $8,000/month in recurring tasks. The case studies were particularly valuable for understanding real-world applications.</p>
-        </div>
+        <div class="rating-count">3,000+</div>
       </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★★★★☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" style="width: 25%;"></div>
+        </div>
+        <div class="rating-count">1,250+</div>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★★★☆☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" style="width: 10%;"></div>
+        </div>
+        <div class="rating-count">500+</div>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★★☆☆☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" style="width: 3%;"></div>
+        </div>
+        <div class="rating-count">150+</div>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★☆☆☆☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" style="width: 2%;"></div>
+        </div>
+        <div class="rating-count">100+</div>
+      </div>
+    </div>
 
-      <!-- Review 3 -->
-      <div class="review-card">
-        <div class="reviewer-info">
-          <img src="assets/images/user3.jpg" alt="Michael T." class="reviewer-avatar">
-          <div class="reviewer-details">
-            <h3>Michael T.</h3>
-            <div class="review-meta">
-              <span class="review-rating">★★★★★</span>
-              <span class="review-date">Nov 5, 2023</span>
-            </div>
-          </div>
-        </div>
-        <span class="review-product">Wealth Foundations</span>
-        <div class="review-text">
-          <p>As someone just starting their financial journey, Wealth Foundations provided the perfect roadmap. The principles are timeless and the action steps are clear. I've already paid off $15,000 in debt and started my first investment portfolio using these methods.</p>
-        </div>
-      </div>
+    <!-- Reviews Grid -->
+    <div class="reviews-grid" id="reviews-container">
+      <!-- Reviews will be loaded here via JavaScript -->
+    </div>
 
-      <!-- Review 4 -->
-      <div class="review-card">
-        <div class="reviewer-info">
-          <img src="assets/images/user4.jpg" alt="Alexandra P." class="reviewer-avatar">
-          <div class="reviewer-details">
-            <h3>Alexandra P.</h3>
-            <div class="review-meta">
-              <span class="review-rating">★★★★★</span>
-              <span class="review-date">Dec 12, 2023</span>
-            </div>
-          </div>
-        </div>
-        <span class="review-product">AI Income Ebook</span>
-        <div class="review-text">
-          <p>I was skeptical about AI tools before reading this ebook, but now I'm a complete convert. The step-by-step automation frameworks helped me create three passive income streams in just two months. The ethical implementation section was particularly thoughtful.</p>
-        </div>
-      </div>
-
-      <!-- Review 5 -->
-      <div class="review-card">
-        <div class="reviewer-info">
-          <img src="assets/images/user5.jpg" alt="David R." class="reviewer-avatar">
-          <div class="reviewer-details">
-            <h3>David R.</h3>
-            <div class="review-meta">
-              <span class="review-rating">★★★★★</span>
-              <span class="review-date">Jan 3, 2024</span>
-            </div>
-          </div>
-        </div>
-        <span class="review-product">Crypto Blackbook</span>
-        <div class="review-text">
-          <p>The institutional trading strategies in Crypto Blackbook are game-changing. The risk management techniques have saved me thousands in potential losses. The private Discord community access alone is worth the price for the ongoing insights.</p>
-        </div>
-      </div>
-
-      <!-- Review 6 -->
-      <div class="review-card">
-        <div class="reviewer-info">
-          <img src="assets/images/user6.jpg" alt="Emma L." class="reviewer-avatar">
-          <div class="reviewer-details">
-            <h3>Emma L.</h3>
-            <div class="review-meta">
-              <span class="review-rating">★★★★☆</span>
-              <span class="review-date">Feb 18, 2024</span>
-            </div>
-          </div>
-        </div>
-        <span class="review-product">Wealth Foundations</span>
-        <div class="review-text">
-          <p>This should be required reading for anyone starting their financial journey. The clear explanations of compound interest and asset allocation helped me make smarter decisions with my first $10,000 investment. The bonus worksheets were incredibly helpful.</p>
-        </div>
-      </div>
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+      <!-- Pagination will be loaded here via JavaScript -->
     </div>
 
     <!-- Review Form -->
@@ -484,16 +550,337 @@
   </div>
 
   <script>
-    // Smooth scroll to top when clicking logo
-    document.querySelector('.nav-brand').addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
+    // Sample review data (in a real app, this would come from a database)
+    const allReviews = [
+      // 5-star reviews (60%)
+      {
+        id: 1,
+        name: "James W.",
+        rating: 5,
+        date: "Oct 15, 2023",
+        product: "Crypto Blackbook",
+        text: "The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques. The institutional-grade knowledge in this course is unmatched. The advanced charting techniques alone were worth the investment.",
+        images: ["review-proof1.jpg", "review-proof2.jpg"],
+        verified: true
+      },
+      {
+        id: 2,
+        name: "Sarah K.",
+        rating: 5,
+        date: "Sep 28, 2023",
+        product: "AI Income Ebook",
+        text: "The AI Income Ebook gave me practical strategies to implement AI in my business immediately. Within 30 days I automated $8,000/month in recurring tasks. The case studies were particularly valuable for understanding real-world applications.",
+        images: [],
+        verified: true
+      },
+      // 4-star reviews (25%)
+      {
+        id: 3,
+        name: "Michael T.",
+        rating: 4,
+        date: "Nov 5, 2023",
+        product: "Wealth Foundations",
+        text: "Great content but the PDF formatting looks odd on my Kindle. Strategies work though - up $2,100 in 3 weeks. The tax section alone saved me thousands in deductions.",
+        images: [],
+        verified: true
+      },
+      // 3-star reviews (10%)
+      {
+        id: 4,
+        name: "Alexandra P.",
+        rating: 3,
+        date: "Dec 12, 2023",
+        product: "AI Income Ebook",
+        text: "Some good info but very basic if you've traded before. The DeFi section was helpful though. Made about $300 but took way more time than advertised.",
+        images: [],
+        verified: true
+      },
+      // 2-star reviews (3%)
+      {
+        id: 5,
+        name: "David R.",
+        rating: 2,
+        date: "Jan 3, 2024",
+        product: "Crypto Blackbook",
+        text: "Expected more for the price. Some strategies are outdated in current market conditions. Might work for others but didn't for me because I'm a beginner.",
+        images: [],
+        verified: true
+      },
+      // 1-star reviews (2%)
+      {
+        id: 6,
+        name: "Emma L.",
+        rating: 1,
+        date: "Feb 18, 2024",
+        product: "Wealth Foundations",
+        text: "Very disappointed. The strategies didn't work for me at all. Customer service was unhelpful when I requested a refund.",
+        images: [],
+        verified: false
+      },
+      // Add more reviews following the same pattern...
+      // In a real implementation, you would have thousands of reviews
+      // For this example, we'll generate more reviews dynamically
+    ];
 
-    // Star rating functionality
+    // Generate more reviews to simulate 5,000+ reviews
+    function generateMoreReviews() {
+      const products = ["AI Income Ebook", "Crypto Blackbook", "Wealth Foundations"];
+      const firstNames = ["James", "Sarah", "Michael", "Alexandra", "David", "Emma", "John", "Emily", "Robert", "Olivia"];
+      const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson"];
+      
+      // Generate 5-star reviews (3000 total)
+      for (let i = 7; i <= 100; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `${product} is absolutely worth every penny! I made $${Math.floor(Math.random() * 9000) + 1000} in just ${Math.floor(Math.random() * 6) + 2} weeks following the strategies.`,
+          `Life-changing material. As a ${["college student", "single mom", "retiree", "small business owner"][Math.floor(Math.random() * 4)]}, this gave me the financial freedom I needed.`,
+          `The ${["arbitrage", "scalping", "long-term investment", "AI bot"][Math.floor(Math.random() * 4)]} strategies work exactly as described. My only complaint is I wish I bought this sooner.`,
+          `After trying ${Math.floor(Math.random() * 5) + 1} other courses, this is the only one that actually delivered results. ${Math.floor(Math.random() * 4000) + 1000}% ROI so far.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 5,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          images: [],
+          verified: Math.random() > 0.3
+        });
+      }
+      
+      // Generate 4-star reviews (1250 total)
+      for (let i = 101; i <= 150; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `Great content but the ${["PDF formatting", "video quality", "Excel templates", "mobile app"][Math.floor(Math.random() * 4)]} could be improved. Still made $${Math.floor(Math.random() * 5000) + 500} though!`,
+          `Mostly excellent, though some ${["screenshots", "examples", "case studies", "instructions"][Math.floor(Math.random() * 4)]} are outdated. The core concepts are solid.`,
+          `Wish there was more on ${["altcoin selection", "tax strategies", "risk management", "market analysis"][Math.floor(Math.random() * 4)]}, but what's included is very helpful.`,
+          `The ${product} delivered ${Math.floor(Math.random() * 30) + 10}% returns last quarter. Knocking one star because ${["customer support", "download process", "community access", "bonus materials"][Math.floor(Math.random() * 4)]} could be better.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 4,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          images: [],
+          verified: Math.random() > 0.3
+        });
+      }
+      
+      // Generate 3-star reviews (500 total)
+      for (let i = 151; i <= 180; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `It's okay. Made about $${Math.floor(Math.random() * 500) + 100} but took way more time than advertised. Your mileage may vary.`,
+          `Some good info but very basic if you've ${["traded before", "read other finance books", "taken similar courses", "worked in finance"][Math.floor(Math.random() * 4)]}.`,
+          `Decent introduction but lacks ${["advanced techniques", "practical examples", "detailed explanations", "real-world applications"][Math.floor(Math.random() * 4)]}.`,
+          `The ${product} is average. I expected more for the price. Made a small profit but nothing extraordinary.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 3,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          images: [],
+          verified: Math.random() > 0.5
+        });
+      }
+      
+      // Generate 2-star reviews (150 total)
+      for (let i = 181; i <= 190; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `Expected more for the price. ${["Strategies didn't work in current market", "Information was too basic", "Customer support was unresponsive", "Materials were poorly organized"][Math.floor(Math.random() * 4)]}.`,
+          `Might work for others but didn't for me because ${["I'm a beginner", "the market changed", "the instructions were unclear", "it required more capital than stated"][Math.floor(Math.random() * 4)]}.`,
+          `Very overhyped. The ${["results", "strategies", "examples", "claims"][Math.floor(Math.random() * 4)]} don't match reality in my experience.`,
+          `Disappointed with the ${product}. Lost ${Math.floor(Math.random() * 500) + 100} trying to follow the advice.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 2,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          images: [],
+          verified: Math.random() > 0.7
+        });
+      }
+      
+      // Generate 1-star reviews (100 total)
+      for (let i = 191; i <= 200; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `Very disappointed. The strategies didn't work for me at all. Customer service was unhelpful when I requested a refund.`,
+          `Complete waste of money. The ${product} is just repackaged information you can find for free online.`,
+          `Scam alert! Lost $${Math.floor(Math.random() * 1000) + 200} following this advice. Stay away!`,
+          `The worst financial advice I've ever received. ${["Lost money immediately", "Strategies are dangerous", "Completely unrealistic", "Author doesn't respond to complaints"][Math.floor(Math.random() * 4)]}.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 1,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          images: [],
+          verified: false
+        });
+      }
+    }
+
+    // Generate the additional reviews
+    generateMoreReviews();
+
+    // Pagination variables
+    const reviewsPerPage = 12;
+    let currentPage = 1;
+
+    // Display reviews for current page
+    function displayReviews(page) {
+      const startIndex = (page - 1) * reviewsPerPage;
+      const endIndex = startIndex + reviewsPerPage;
+      const reviewsToShow = allReviews.slice(startIndex, endIndex);
+      
+      const reviewsContainer = document.getElementById('reviews-container');
+      reviewsContainer.innerHTML = '';
+      
+      reviewsToShow.forEach(review => {
+        const reviewCard = document.createElement('div');
+        reviewCard.className = 'review-card';
+        
+        // Generate star rating
+        let stars = '';
+        for (let i = 1; i <= 5; i++) {
+          stars += i <= review.rating ? '★' : '☆';
+        }
+        
+        // Generate verified badge if applicable
+        const verifiedBadge = review.verified ? '<span style="color: var(--gold); font-size: 0.8rem;"> ✓ Verified Buyer</span>' : '';
+        
+        // Generate review images if available
+        let imagesHTML = '';
+        if (review.images.length > 0) {
+          imagesHTML = '<div class="review-images">';
+          review.images.forEach(img => {
+            imagesHTML += `<img src="assets/images/${img}" alt="Proof" class="review-image">`;
+          });
+          imagesHTML += '</div>';
+        }
+        
+        reviewCard.innerHTML = `
+          <div class="reviewer-info">
+            <img src="assets/images/user${Math.floor(Math.random() * 6) + 1}.jpg" alt="${review.name}" class="reviewer-avatar">
+            <div class="reviewer-details">
+              <h3>${review.name}</h3>
+              <div class="review-meta">
+                <span class="review-rating">${stars}</span>
+                <span class="review-date">${review.date}${verifiedBadge}</span>
+              </div>
+            </div>
+          </div>
+          <span class="review-product">${review.product}</span>
+          <div class="review-text">
+            <p>${review.text}</p>
+          </div>
+          ${imagesHTML}
+        `;
+        
+        reviewsContainer.appendChild(reviewCard);
+      });
+      
+      // Update pagination buttons
+      updatePagination();
+    }
+
+    // Update pagination buttons
+    function updatePagination() {
+      const totalPages = Math.ceil(allReviews.length / reviewsPerPage);
+      const paginationContainer = document.getElementById('pagination');
+      paginationContainer.innerHTML = '';
+      
+      // Previous button
+      if (currentPage > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '&laquo;';
+        prevBtn.addEventListener('click', () => {
+          currentPage--;
+          displayReviews(currentPage);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        paginationContainer.appendChild(prevBtn);
+      }
+      
+      // Page buttons
+      const maxVisiblePages = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+      
+      if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          currentPage = i;
+          displayReviews(currentPage);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        paginationContainer.appendChild(pageBtn);
+      }
+      
+      // Next button
+      if (currentPage < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = '&raquo;';
+        nextBtn.addEventListener('click', () => {
+          currentPage++;
+          displayReviews(currentPage);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        paginationContainer.appendChild(nextBtn);
+      }
+    }
+
+    // Initialize
+    displayReviews(currentPage);
+
+    // Star rating functionality for the form
     const stars = document.querySelectorAll('.rating-star');
     const ratingValue = document.getElementById('rating-value');
     
@@ -543,12 +930,21 @@
       ratingValue.value = '';
     });
 
-    // Image click to enlarge (would need modal implementation)
-    document.querySelectorAll('.review-image').forEach(img => {
-      img.addEventListener('click', function() {
-        // In a real implementation, this would open a lightbox/modal
-        console.log('Opening image viewer for:', this.src);
+    // Smooth scroll to top when clicking logo
+    document.querySelector('.nav-brand').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
+    });
+
+    // Image click to enlarge (would need modal implementation)
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('review-image')) {
+        // In a real implementation, this would open a lightbox/modal
+        console.log('Opening image viewer for:', e.target.src);
+      }
     });
   </script>
 </body>
