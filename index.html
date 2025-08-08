@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrindUp | Built to Grind. Made to Win.</title>
+  <meta name="description" content="Premium knowledge products for entrepreneurs and traders. Get elite strategies for business, trading, crypto, and AI.">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ===== GLOBAL STYLES ===== */
@@ -184,20 +185,19 @@
       width: 100%;
     }
 
-    .auth-trigger {
+    .mobile-menu-toggle {
+      display: none;
       background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      padding: 0.7rem 1.5rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      border: none;
+      color: var(--white);
+      font-size: 1.8rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      z-index: 1001;
     }
 
-    .auth-trigger:hover {
-      background: rgba(212,175,55,0.1);
+    .mobile-menu-toggle:hover {
+      color: var(--gold);
     }
 
     /* ===== CINEMATIC HERO SECTION ===== */
@@ -485,6 +485,26 @@
       background: rgba(212,175,55,0.1);
     }
 
+    .view-all-container {
+      text-align: center;
+      margin-top: 4rem;
+    }
+  
+    .view-all-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+  
+    .view-all-btn:hover {
+      background: rgba(212,175,55,0.1);
+    }
+
     /* ===== LUXURY REVIEWS SECTION ===== */
     .reviews-section {
       padding: 10rem 5%;
@@ -744,8 +764,8 @@
   line-height: 1.8;
   margin-bottom: 3rem;
   font-size: 1.1rem;
-  position: relative; /* Needed for signature positioning */
-  padding-bottom: 20px; /* Creates space for signature */
+  position: relative;
+  padding-bottom: 20px;
 }
 
     /* ===== EXCLUSIVE NEWSLETTER ===== */
@@ -930,7 +950,25 @@
       }
       
       .nav-links {
-        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--black);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--gold);
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
       }
       
       .hero-content h1 {
@@ -1001,14 +1039,14 @@
         <a href="#reviews">Testimonials</a>
         <a href="reviews.html">All Reviews</a>
         <a href="#about">Our Ethos</a>
-        <button class="auth-trigger" id="login-btn">Private Access</button>
       </div>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
     </nav>
 
     <!-- Cinematic Hero Section -->
     <section class="hero">
       <div class="hero-video-wrapper">
-        <video autoplay muted loop class="hero-video">
+        <video autoplay muted loop class="hero-video" aria-label="Background video showing business and trading concepts">
           <source src="assets/video/hero-video.mp4" type="video/mp4">
         </video>
       </div>
@@ -1029,15 +1067,15 @@
           <button class="filter-btn" data-category="trading">Trading</button>
           <button class="filter-btn" data-category="crypto">Crypto</button>
           <button class="filter-btn" data-category="ai">AI</button>
-          <button class="filter-btn" data-category="ai">Others</button>
+          <button class="filter-btn" data-category="other">Others</button>
         </div>
       </div>
       <div class="product-grid" id="product-grid">
         <!-- Product 1 -->
-        <div class="product-card">
+        <div class="product-card" data-category="ai business">
           <div class="product-badge bestseller">BESTSELLER</div>
           <div class="product-image">
-            <img src="assets/Images/ebook-cover.jpg" alt="AI Income Ebook">
+            <img src="assets/Images/ebook-cover.jpg" alt="AI Income Ebook" loading="lazy">
           </div>
           <div class="product-info">
             <h3>GrindUp AI Income Ebook</h3>
@@ -1048,10 +1086,10 @@
         </div>
         
         <!-- Product 2 -->
-        <div class="product-card">
+        <div class="product-card" data-category="crypto trading">
           <div class="product-badge bestseller">BESTSELLER</div>
           <div class="product-image">
-            <img src="assets/images/crypto-blackbook.jpg" alt="Crypto Blackbook">
+            <img src="assets/images/crypto-blackbook.jpg" alt="Crypto Blackbook" loading="lazy">
           </div>
           <div class="product-info">
             <h3>Crypto Blackbook</h3>
@@ -1062,18 +1100,21 @@
         </div>
         
         <!-- Product 3 -->
-        <div class="product-card">
+        <div class="product-card" data-category="business">
           <div class="product-badge free">FREE</div>
           <div class="product-image">
-            <img src="assets/images/wealth-foundations.jpg" alt="Wealth Foundations">
+            <img src="assets/images/wealth-foundations.jpg" alt="Wealth Foundations" loading="lazy">
           </div>
           <div class="product-info">
             <h3>Wealth Foundations</h3>
             <div class="product-rating">★★★★☆ <span>(1.2k reviews)</span></div>
             <div class="product-price">FREE</div>
-            <a href="#" class="view-product">View Details</a>
+            <a href="wealth-foundations.html" class="view-product">View Details</a>
           </div>
         </div>
+      </div>
+      <div class="view-all-container">
+        <a href="products.html" class="view-all-btn">View All Collections</a>
       </div>
     </section>
 
@@ -1087,7 +1128,7 @@
         <!-- Review 1 -->
         <div class="review-card">
           <div class="reviewer-info">
-            <img src="assets/Images/user1.jpg" alt="James W.">
+            <img src="assets/Images/user1.jpg" alt="James W." loading="lazy">
             <div>
               <p class="reviewer-name">James W.</p>
               <p class="reviewer-meta">Verified Buyer ★★★★★ • Oct 15, 2023</p>
@@ -1101,7 +1142,7 @@
         <!-- Review 2 -->
         <div class="review-card">
           <div class="reviewer-info">
-            <img src="assets/Images/user.png" alt="Sarah K.">
+            <img src="assets/Images/user.png" alt="Sarah K." loading="lazy">
             <div>
               <p class="reviewer-name">Sarah K.</p>
               <p class="reviewer-meta">Verified Buyer ★★★★☆ • Sep 28, 2023</p>
@@ -1181,7 +1222,7 @@
       <div class="ask-question">
         <h3>Have a Question?</h3>
         <form id="question-form">
-          <textarea placeholder="Your question..." required></textarea>
+          <textarea placeholder="Your question..." required aria-label="Question input field"></textarea>
           <button type="submit" class="cta-gold">Submit Question</button>
         </form>
       </div>
@@ -1203,7 +1244,7 @@
       <h2>Join The Inner Circle</h2>
       <p>Receive exclusive content, early access to new collections, and private event invitations</p>
       <form class="newsletter-form">
-        <input type="email" placeholder="Your private email" required>
+        <input type="email" placeholder="Your private email" required aria-label="Email input for newsletter">
         <button type="submit">Submit</button>
       </form>
     </section>
@@ -1224,51 +1265,26 @@
       </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="auth-modal" class="modal">
-      <div class="modal-content">
-        <button class="close-modal">&times;</button>
-        <h3>ACCESS GRINDUP</h3>
-        <p>Enter your credentials securely</p>
-        <form id="login-form">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" required>
-          </div>
-          <button type="submit" class="cta-gold">Login</button>
-        </form>
-        <p>Don't have an account? <a href="#" id="switch-to-signup">Sign up</a></p>
-        <button class="biometric-btn">
-          <img src="assets/Images/face-id.png" alt="Face ID">
-          Continue with Face ID
-        </button>
-      </div>
-    </div>
-
     <!-- Review Modal -->
     <div id="review-modal" class="modal">
       <div class="modal-content">
-        <button class="close-modal">&times;</button>
+        <button class="close-modal" aria-label="Close review modal">&times;</button>
         <h3>Share Your Experience</h3>
         <form id="review-form">
           <div class="rating-input">
             <p>Your Rating:</p>
             <div class="stars">
-              <span class="star" data-rating="1">☆</span>
-              <span class="star" data-rating="2">☆</span>
-              <span class="star" data-rating="3">☆</span>
-              <span class="star" data-rating="4">☆</span>
-              <span class="star" data-rating="5">☆</span>
+              <span class="star" data-rating="1" role="button" aria-label="1 star">☆</span>
+              <span class="star" data-rating="2" role="button" aria-label="2 stars">☆</span>
+              <span class="star" data-rating="3" role="button" aria-label="3 stars">☆</span>
+              <span class="star" data-rating="4" role="button" aria-label="4 stars">☆</span>
+              <span class="star" data-rating="5" role="button" aria-label="5 stars">☆</span>
             </div>
             <input type="hidden" id="rating-value" value="0">
           </div>
           <div class="form-group">
             <label for="review-text">Your Review</label>
-            <textarea id="review-text" required></textarea>
+            <textarea id="review-text" required aria-label="Review text input"></textarea>
           </div>
           <button type="submit" class="cta-gold">Submit Review</button>
         </form>
@@ -1279,12 +1295,16 @@
   <script>
     // ===== LOADER =====
     window.addEventListener('load', function() {
+      // Hide loader after content is loaded
       setTimeout(function() {
         document.querySelector('.loader').style.opacity = '0';
         setTimeout(function() {
           document.querySelector('.loader').style.display = 'none';
         }, 500);
       }, 1500);
+
+      // Initialize other elements after load
+      checkVisibility();
     });
 
     // ===== NAVBAR SCROLL EFFECT =====
@@ -1295,6 +1315,23 @@
       } else {
         navbar.classList.remove('scrolled');
       }
+    });
+
+    // ===== MOBILE MENU TOGGLE =====
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+      this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenuToggle.textContent = '☰';
+      });
     });
 
     // ===== SMOOTH SCROLL =====
@@ -1309,9 +1346,12 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
       });
     });
 
@@ -1335,8 +1375,8 @@
           if (category === 'all') {
             product.style.display = 'block';
           } else {
-            const productCategory = product.querySelector('a').getAttribute('href').split('.')[0];
-            if (productCategory.includes(category)) {
+            const productCategories = product.dataset.category.split(' ');
+            if (productCategories.includes(category)) {
               product.style.display = 'block';
             } else {
               product.style.display = 'none';
@@ -1359,7 +1399,6 @@
     }
 
     window.addEventListener('scroll', checkVisibility);
-    window.addEventListener('load', checkVisibility);
 
     // ===== FAQ TOGGLE =====
     document.querySelectorAll('.faq-question').forEach(question => {
@@ -1379,26 +1418,30 @@
     });
 
     // ===== MODAL TOGGLE =====
-    const authModal = document.getElementById('auth-modal');
     const reviewModal = document.getElementById('review-modal');
-    const loginBtn = document.getElementById('login-btn');
     const leaveReviewBtn = document.getElementById('leave-review-btn');
     const closeModal = document.querySelectorAll('.close-modal');
     
-    loginBtn.addEventListener('click', function() {
-      authModal.classList.add('active');
-    });
-    
     leaveReviewBtn.addEventListener('click', function() {
       reviewModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
     
     closeModal.forEach(btn => {
       btn.addEventListener('click', function() {
         this.closest('.modal').classList.remove('active');
+        document.body.style.overflow = '';
       });
     });
     
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+      if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
     // Star rating
     document.addEventListener('click', function(e) {
       if (e.target.classList.contains('star')) {
@@ -1408,21 +1451,26 @@
         
         stars.forEach((star, index) => {
           star.textContent = index < rating ? '★' : '☆';
+          star.setAttribute('aria-label', `${index < rating ? 'Filled' : 'Empty'} ${index + 1} star`);
         });
       }
     });
     
     // ===== FORM SUBMISSIONS =====
-    document.getElementById('login-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Login functionality would be implemented here');
-      authModal.classList.remove('active');
-    });
-    
     document.getElementById('review-form').addEventListener('submit', function(e) {
       e.preventDefault();
       alert('Thank you for your review! It will appear after approval.');
       reviewModal.classList.remove('active');
+      document.body.style.overflow = '';
+      this.reset();
+      
+      // Reset stars
+      const stars = this.querySelectorAll('.star');
+      stars.forEach((star, index) => {
+        star.textContent = '☆';
+        star.setAttribute('aria-label', `Empty ${index + 1} star`);
+      });
+      document.getElementById('rating-value').value = '0';
     });
     
     document.getElementById('question-form').addEventListener('submit', function(e) {
@@ -1435,6 +1483,27 @@
       e.preventDefault();
       alert('Thanks for subscribing to our Inner Circle!');
       this.reset();
+    });
+
+    // ===== LAZY LOAD IMAGES =====
+    document.addEventListener('DOMContentLoaded', function() {
+      const lazyImages = [].slice.call(document.querySelectorAll('img[loading="lazy"]'));
+      
+      if ('IntersectionObserver' in window) {
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              let lazyImage = entry.target;
+              lazyImage.src = lazyImage.dataset.src;
+              lazyImageObserver.unobserve(lazyImage);
+            }
+          });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+          lazyImageObserver.observe(lazyImage);
+        });
+      }
     });
   </script>
 </body>
