@@ -540,66 +540,97 @@
     </div>
   </div>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
   <script>
-    // Initialize Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyAsU4EKJZX_bgEtjn8t1LR_x07zW2fvWF4",
-      authDomain: "grindup-reviews.firebaseapp.com",
-      projectId: "grindup-reviews",
-      storageBucket: "grindup-reviews.appspot.com",
-      messagingSenderId: "725467053077",
-      appId: "1:725467053077:web:d1439f385afaee0370e21c"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    // Temporary review data storage
+    let allReviews = [
+      {
+        id: 1,
+        name: "James W.",
+        rating: 5,
+        date: "Oct 15, 2023",
+        product: "Crypto Blackbook",
+        text: "The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques.",
+        verified: true
+      },
+      {
+        id: 2,
+        name: "Sarah K.",
+        rating: 5,
+        date: "Sep 28, 2023",
+        product: "AI Income Ebook",
+        text: "The AI Income Ebook gave me practical strategies to implement AI in my business immediately.",
+        verified: true
+      },
+      {
+        id: 3,
+        name: "Michael T.",
+        rating: 4,
+        date: "Nov 5, 2023",
+        product: "Wealth Foundations",
+        text: "Great content but the PDF formatting looks odd on my Kindle. Strategies work though - up $2,100 in 3 weeks.",
+        verified: true
+      },
+      {
+        id: 4,
+        name: "Alexandra P.",
+        rating: 3,
+        date: "Dec 12, 2023",
+        product: "AI Income Ebook",
+        text: "Some good info but very basic if you've traded before. The DeFi section was helpful though.",
+        verified: true
+      },
+      {
+        id: 5,
+        name: "David R.",
+        rating: 2,
+        date: "Jan 3, 2024",
+        product: "Crypto Blackbook",
+        text: "Expected more for the price. Some strategies are outdated in current market conditions.",
+        verified: true
+      },
+      {
+        id: 6,
+        name: "Emma L.",
+        rating: 1,
+        date: "Feb 18, 2024",
+        product: "Wealth Foundations",
+        text: "Very disappointed. The strategies didn't work for me at all.",
+        verified: false
+      }
+    ];
 
     // Pagination variables
     const reviewsPerPage = 12;
     let currentPage = 1;
-    let allReviews = [];
 
-    // Load reviews from Firestore
+    // Load reviews from local storage if available
     function loadReviews() {
-      db.collection("reviews")
-        .where("verified", "==", true)
-        .orderBy("date", "desc")
-        .get()
-        .then((querySnapshot) => {
-          allReviews = [];
-          querySnapshot.forEach((doc) => {
-            allReviews.push({
-              id: doc.id,
-              ...doc.data()
-            });
-          });
-          displayReviews(currentPage);
-          updateStats();
-        })
-        .catch((error) => {
-          console.error("Error loading reviews: ", error);
-        });
+      const savedReviews = localStorage.getItem('grindupReviews');
+      if (savedReviews) {
+        allReviews = JSON.parse(savedReviews);
+      }
+      displayReviews(currentPage);
+      updateStats();
     }
 
     // Calculate and update statistics
     function updateStats() {
-      const totalReviews = allReviews.length;
-      const totalRating = allReviews.reduce((sum, review) => sum + review.rating, 0);
+      const verifiedReviews = allReviews.filter(review => review.verified);
+      const totalReviews = verifiedReviews.length;
+      const totalRating = verifiedReviews.reduce((sum, review) => sum + review.rating, 0);
       const avgRating = totalReviews > 0 ? (totalRating / totalReviews).toFixed(1) : 0;
       
       // Calculate rating distribution
       const ratingCounts = [0, 0, 0, 0, 0];
-      allReviews.forEach(review => {
+      verifiedReviews.forEach(review => {
         ratingCounts[review.rating - 1]++;
       });
 
       // Update UI
       document.getElementById('total-reviews').textContent = totalReviews.toLocaleString();
       document.getElementById('avg-rating').textContent = avgRating;
+      document.getElementById('recommend-rate').textContent = 
+        totalReviews > 0 ? Math.round((ratingCounts[3] + ratingCounts[4]) / totalReviews * 100) + '%' : '0%';
       
       // Update rating distribution bars
       for (let i = 1; i <= 5; i++) {
@@ -612,9 +643,10 @@
 
     // Display reviews for current page
     function displayReviews(page) {
+      const verifiedReviews = allReviews.filter(review => review.verified);
       const startIndex = (page - 1) * reviewsPerPage;
       const endIndex = startIndex + reviewsPerPage;
-      const reviewsToShow = allReviews.slice(startIndex, endIndex);
+      const reviewsToShow = verifiedReviews.slice(startIndex, endIndex);
       
       const reviewsContainer = document.getElementById('reviews-container');
       reviewsContainer.innerHTML = '';
@@ -629,9 +661,6 @@
           stars += i <= review.rating ? '★' : '☆';
         }
         
-        // Generate verified badge if applicable
-        const verifiedBadge = review.verified ? '<span style="color: var(--gold); font-size: 0.8rem;"> ✓ Verified Buyer</span>' : '';
-        
         reviewCard.innerHTML = `
           <div class="reviewer-info">
             <img src="assets/images/user${Math.floor(Math.random() * 6) + 1}.jpg" alt="${review.name}" class="reviewer-avatar">
@@ -639,7 +668,8 @@
               <h3>${review.name}</h3>
               <div class="review-meta">
                 <span class="review-rating">${stars}</span>
-                <span class="review-date">${review.date}${verifiedBadge}</span>
+                <span class="review-date">${review.date}</span>
+                ${review.verified ? '<span style="color: var(--gold); font-size: 0.8rem;"> ✓ Verified</span>' : ''}
               </div>
             </div>
           </div>
@@ -657,7 +687,8 @@
 
     // Update pagination buttons
     function updatePagination() {
-      const totalPages = Math.ceil(allReviews.length / reviewsPerPage);
+      const verifiedReviews = allReviews.filter(review => review.verified);
+      const totalPages = Math.ceil(verifiedReviews.length / reviewsPerPage);
       const paginationContainer = document.getElementById('pagination');
       paginationContainer.innerHTML = '';
       
@@ -746,7 +777,7 @@
     });
 
     // Form submission
-    document.getElementById('review-form').addEventListener('submit', async function(e) {
+    document.getElementById('review-form').addEventListener('submit', function(e) {
       e.preventDefault();
       
       const name = document.getElementById('reviewer-name').value;
@@ -755,36 +786,40 @@
       const rating = document.getElementById('rating-value').value;
       const text = document.getElementById('review-text').value;
 
-      try {
-        // Save to Firebase
-        await db.collection("reviews").add({
-          name: name,
-          email: email,
-          product: product,
-          rating: parseInt(rating),
-          text: text,
-          date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
-          verified: false
-        });
-        
-        alert('Thank you! Your review will appear after approval.');
-        this.reset();
-        
-        // Reset stars
-        stars.forEach(star => {
-          star.style.color = 'var(--white)';
-          star.style.opacity = '0.3';
-        });
-        ratingValue.value = '';
-        
-      } catch (error) {
-        alert('Error submitting review. Please try again.');
-        console.error(error);
-      }
+      // Create new review object
+      const newReview = {
+        id: allReviews.length + 1,
+        name: name,
+        email: email,
+        product: product,
+        rating: parseInt(rating),
+        text: text,
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+        verified: false // Will need manual approval
+      };
+      
+      // Add to array
+      allReviews.unshift(newReview);
+      
+      // Save to local storage
+      localStorage.setItem('grindupReviews', JSON.stringify(allReviews));
+      
+      // Reset form
+      this.reset();
+      stars.forEach(star => {
+        star.style.color = 'var(--white)';
+        star.style.opacity = '0.3';
+      });
+      ratingValue.value = '';
+      
+      alert('Thank you for your review! It will appear after approval.');
+      
+      // Refresh stats (but new review won't show until verified)
+      updateStats();
     });
 
-    // Initialize
-    loadReviews();
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', loadReviews);
 
     // Smooth scroll to top when clicking logo
     document.querySelector('.nav-brand').addEventListener('click', function(e) {
