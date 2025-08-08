@@ -67,6 +67,11 @@
       cursor: pointer;
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
     .nav-links a {
       color: var(--white);
       text-transform: uppercase;
@@ -77,6 +82,34 @@
 
     .nav-links a:hover {
       color: var(--gold);
+    }
+
+    .wishlist-icon {
+      position: relative;
+      margin-left: 2rem;
+      cursor: pointer;
+      color: var(--white);
+      transition: color 0.3s ease;
+    }
+
+    .wishlist-icon:hover {
+      color: var(--gold);
+    }
+
+    .wishlist-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--gold);
+      color: var(--black);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
     }
 
     .products-page {
@@ -137,12 +170,56 @@
       font-family: var(--font-heading);
       font-size: 0.8rem;
       letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    .product-image-container {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
     }
 
     .product-image {
       width: 100%;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .view-product-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .view-product-btn {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .product-card:hover .view-product-overlay {
+      opacity: 1;
     }
 
     .product-info {
@@ -245,7 +322,7 @@
       background: var(--gold-light);
     }
 
-    .wishlist {
+    .wishlist-btn {
       width: 40px;
       height: 40px;
       display: flex;
@@ -259,135 +336,162 @@
       transition: all 0.3s ease;
     }
 
-    .wishlist:hover {
+    .wishlist-btn:hover {
       background: rgba(212,175,55,0.1);
     }
 
-    .testimonials {
-      margin-top: 4rem;
+    .wishlist-btn.active {
+      color: #ff6b6b;
+      border-color: rgba(255, 107, 107, 0.2);
     }
 
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin-bottom: 2rem;
-      letter-spacing: 2px;
-      text-align: center;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .testimonial-card {
+    /* Wishlist Popup */
+    .wishlist-popup {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100vh;
       background: var(--dark-gray);
-      border: 1px solid rgba(212,175,55,0.1);
-      border-radius: 8px;
+      border-left: 1px solid rgba(212,175,55,0.1);
+      z-index: 2000;
+      transition: right 0.4s ease;
+      overflow-y: auto;
+    }
+
+    .wishlist-popup.open {
+      right: 0;
+    }
+
+    .wishlist-header {
       padding: 1.5rem;
-    }
-
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .testimonial-author {
+      border-bottom: 1px solid rgba(212,175,55,0.1);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 1rem;
     }
 
-    .author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: var(--black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
+    .wishlist-title {
       font-family: var(--font-heading);
-    }
-
-    .author-info h4 {
-      font-family: var(--font-heading);
-      letter-spacing: 1px;
-      margin-bottom: 0.2rem;
-    }
-
-    .author-info p {
-      font-size: 0.8rem;
-      opacity: 0.7;
-    }
-
-    .view-all-reviews {
-      display: block;
-      text-align: center;
+      font-size: 1.5rem;
       color: var(--gold);
-      margin-top: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .close-wishlist {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.7;
       transition: opacity 0.3s ease;
     }
 
-    .view-all-reviews:hover {
-      opacity: 0.8;
+    .close-wishlist:hover {
+      opacity: 1;
     }
 
-    .faq-section {
-      margin-top: 4rem;
-    }
-
-    .faq-item {
-      background: var(--dark-gray);
-      border: 1px solid rgba(212,175,55,0.1);
-      border-radius: 8px;
+    .wishlist-items {
       padding: 1.5rem;
-      margin-bottom: 1rem;
+    }
+
+    .wishlist-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .wishlist-item-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .wishlist-item-details {
+      flex-grow: 1;
+    }
+
+    .wishlist-item-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .wishlist-item-price {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .wishlist-item-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .wishlist-item-btn {
+      flex-grow: 1;
+      background: var(--black);
+      border: 1px solid rgba(212,175,55,0.2);
+      color: var(--gold);
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .wishlist-item-btn:hover {
+      background: rgba(212,175,55,0.1);
+    }
+
+    .remove-wishlist-item {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black);
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
+      border-radius: 4px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .faq-item:hover {
-      border-color: var(--gold);
+    .remove-wishlist-item:hover {
+      background: rgba(255, 107, 107, 0.1);
     }
 
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      letter-spacing: 1px;
-      font-size: 1.2rem;
+    .wishlist-empty {
+      text-align: center;
+      padding: 2rem;
+      opacity: 0.7;
     }
 
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      margin-top: 0;
-      opacity: 0.8;
-      line-height: 1.6;
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1500;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
     }
 
-    .faq-item.active .faq-answer {
-      max-height: 200px;
-      margin-top: 1rem;
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .faq-toggle {
-      color: var(--gold);
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.active .faq-toggle {
-      transform: rotate(180deg);
-    }
-
+    /* Responsive styles */
     @media (max-width: 768px) {
       .products-grid {
         grid-template-columns: 1fr;
@@ -396,9 +500,9 @@
       .page-header h1 {
         font-size: 2.5rem;
       }
-      
-      .testimonials-grid {
-        grid-template-columns: 1fr;
+
+      .wishlist-popup {
+        width: 350px;
       }
     }
 
@@ -407,7 +511,11 @@
         flex-direction: column;
       }
       
-      .wishlist {
+      .wishlist-btn {
+        width: 100%;
+      }
+
+      .wishlist-popup {
         width: 100%;
       }
     }
@@ -422,8 +530,26 @@
       <a href="products.html">Products</a>
       <a href="about.html">About</a>
       <a href="reviews.html">Reviews</a>
+      <div class="wishlist-icon" id="wishlist-toggle">
+        <i class="fas fa-heart"></i>
+        <span class="wishlist-count" id="wishlist-counter">0</span>
+      </div>
     </div>
   </nav>
+
+  <!-- Wishlist Popup -->
+  <div class="wishlist-popup" id="wishlist-popup">
+    <div class="wishlist-header">
+      <h2 class="wishlist-title">Your Wishlist</h2>
+      <button class="close-wishlist" id="close-wishlist">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="wishlist-items" id="wishlist-items-container">
+      <!-- Wishlist items will be added here dynamically -->
+    </div>
+  </div>
+  <div class="overlay" id="overlay"></div>
 
   <!-- Main Content -->
   <div class="products-page">
@@ -435,9 +561,14 @@
     <!-- Products Grid -->
     <div class="products-grid">
       <!-- AI Income Ebook -->
-      <div class="product-card">
+      <div class="product-card" data-product-id="ai-income-ebook">
         <div class="product-badge">BESTSELLER</div>
-        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Income Ebook" class="product-image">
+        <div class="product-image-container">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Income Ebook" class="product-image">
+          <div class="view-product-overlay">
+            <button class="view-product-btn" onclick="window.location.href='ai-income-ebook.html'">View Product</button>
+          </div>
+        </div>
         <div class="product-info">
           <h2 class="product-title">AI INCOME EBOOK</h2>
           <div class="product-rating">
@@ -445,7 +576,7 @@
             <div class="rating-count">1,250+ Reviews</div>
           </div>
           <p class="product-description">
-            The ultimate guide to building automated income streams with artificial intelligence. Learn how to leverage AI tools to create passive income with minimal effort.
+            The ultimate guide to building automated income streams with artificial intelligence.
           </p>
           <div class="product-features">
             <div class="feature-item">
@@ -456,10 +587,6 @@
               <i class="fas fa-check-circle feature-icon"></i>
               <span>75+ proven AI tools and platforms</span>
             </div>
-            <div class="feature-item">
-              <i class="fas fa-check-circle feature-icon"></i>
-              <span>Case studies of successful implementations</span>
-            </div>
           </div>
           <div class="product-price">
             <span class="current-price">$97</span>
@@ -468,7 +595,7 @@
           </div>
           <div class="product-cta">
             <button class="buy-now">Buy Now</button>
-            <button class="wishlist">
+            <button class="wishlist-btn">
               <i class="far fa-heart"></i>
             </button>
           </div>
@@ -476,9 +603,14 @@
       </div>
 
       <!-- Crypto Blackbook -->
-      <div class="product-card">
+      <div class="product-card" data-product-id="crypto-blackbook">
         <div class="product-badge">NEW</div>
-        <img src="https://images.unsplash.com/photo-1620336655055-088d06e36bf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Crypto Blackbook" class="product-image">
+        <div class="product-image-container">
+          <img src="https://images.unsplash.com/photo-1620336655055-088d06e36bf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Crypto Blackbook" class="product-image">
+          <div class="view-product-overlay">
+            <button class="view-product-btn" onclick="window.location.href='crypto-blackbook.html'">View Product</button>
+          </div>
+        </div>
         <div class="product-info">
           <h2 class="product-title">CRYPTO BLACKBOOK</h2>
           <div class="product-rating">
@@ -486,7 +618,7 @@
             <div class="rating-count">850+ Reviews</div>
           </div>
           <p class="product-description">
-            Institutional-grade crypto trading strategies revealed for the first time. Master the techniques used by hedge funds and professional traders.
+            Institutional-grade crypto trading strategies revealed for the first time.
           </p>
           <div class="product-features">
             <div class="feature-item">
@@ -497,10 +629,6 @@
               <i class="fas fa-check-circle feature-icon"></i>
               <span>Risk management frameworks</span>
             </div>
-            <div class="feature-item">
-              <i class="fas fa-check-circle feature-icon"></i>
-              <span>Market cycle prediction models</span>
-            </div>
           </div>
           <div class="product-price">
             <span class="current-price">$147</span>
@@ -509,7 +637,7 @@
           </div>
           <div class="product-cta">
             <button class="buy-now">Buy Now</button>
-            <button class="wishlist">
+            <button class="wishlist-btn">
               <i class="far fa-heart"></i>
             </button>
           </div>
@@ -517,9 +645,14 @@
       </div>
 
       <!-- Wealth Foundations -->
-      <div class="product-card">
+      <div class="product-card" data-product-id="wealth-foundations">
         <div class="product-badge">POPULAR</div>
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Wealth Foundations" class="product-image">
+        <div class="product-image-container">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Wealth Foundations" class="product-image">
+          <div class="view-product-overlay">
+            <button class="view-product-btn" onclick="window.location.href='wealth-foundations.html'">View Product</button>
+          </div>
+        </div>
         <div class="product-info">
           <h2 class="product-title">WEALTH FOUNDATIONS</h2>
           <div class="product-rating">
@@ -527,7 +660,7 @@
             <div class="rating-count">1,800+ Reviews</div>
           </div>
           <p class="product-description">
-            The complete system for building lasting wealth through smart investments. From beginner to advanced strategies in one comprehensive package.
+            The complete system for building lasting wealth through smart investments.
           </p>
           <div class="product-features">
             <div class="feature-item">
@@ -538,10 +671,6 @@
               <i class="fas fa-check-circle feature-icon"></i>
               <span>Tax optimization strategies</span>
             </div>
-            <div class="feature-item">
-              <i class="fas fa-check-circle feature-icon"></i>
-              <span>Compound growth calculators</span>
-            </div>
           </div>
           <div class="product-price">
             <span class="current-price">$197</span>
@@ -550,124 +679,186 @@
           </div>
           <div class="product-cta">
             <button class="buy-now">Buy Now</button>
-            <button class="wishlist">
+            <button class="wishlist-btn">
               <i class="far fa-heart"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-      <h2 class="section-title">Success Stories</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <p class="testimonial-text">
-            "The AI Income Ebook helped me automate my first $5,000/month income stream. I was able to quit my job within 3 months of implementing these strategies."
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">JW</div>
-            <div class="author-info">
-              <h4>James W.</h4>
-              <p>Former Accountant</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">
-            "Crypto Blackbook's arbitrage strategies alone made me over $40,000 in 6 months. The institutional knowledge in this course is priceless."
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">SK</div>
-            <div class="author-info">
-              <h4>Sarah K.</h4>
-              <p>Day Trader</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p class="testimonial-text">
-            "Wealth Foundations completely changed how I manage my money. My net worth has grown by 300% since following this system."
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">MT</div>
-            <div class="author-info">
-              <h4>Michael T.</h4>
-              <p>Small Business Owner</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a href="reviews.html" class="view-all-reviews">View All Reviews →</a>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>How do I access the products after purchase?</span>
-          <i class="fas fa-chevron-down faq-toggle"></i>
-        </div>
-        <div class="faq-answer">
-          <p>Immediately after purchase, you'll receive an email with download links and access to our members area. All products are digital and available instantly.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>Is there a money-back guarantee?</span>
-          <i class="fas fa-chevron-down faq-toggle"></i>
-        </div>
-        <div class="faq-answer">
-          <p>Yes! All our products come with a 30-day money-back guarantee. If you're not satisfied for any reason, simply email us for a full refund.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>Do I need prior experience to use these products?</span>
-          <i class="fas fa-chevron-down faq-toggle"></i>
-        </div>
-        <div class="faq-answer">
-          <p>No, our products are designed to work for complete beginners while still providing advanced strategies for experienced users. We provide step-by-step guidance.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>Are there any recurring fees?</span>
-          <i class="fas fa-chevron-down faq-toggle"></i>
-        </div>
-        <div class="faq-answer">
-          <p>No, all our products are one-time purchases with lifetime access. Some optional services may have fees, but these are clearly marked.</p>
-        </div>
-      </div>
-    </section>
   </div>
 
   <script>
-    // FAQ toggle functionality
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.addEventListener('click', function() {
-        this.classList.toggle('active');
-      });
-    });
+    // Product data
+    const products = {
+      'ai-income-ebook': {
+        id: 'ai-income-ebook',
+        title: 'AI INCOME EBOOK',
+        price: '$97',
+        originalPrice: '$197',
+        image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+        link: 'ai-income-ebook.html'
+      },
+      'crypto-blackbook': {
+        id: 'crypto-blackbook',
+        title: 'CRYPTO BLACKBOOK',
+        price: '$147',
+        originalPrice: '$297',
+        image: 'https://images.unsplash.com/photo-1620336655055-088d06e36bf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+        link: 'crypto-blackbook.html'
+      },
+      'wealth-foundations': {
+        id: 'wealth-foundations',
+        title: 'WEALTH FOUNDATIONS',
+        price: '$197',
+        originalPrice: '$397',
+        image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+        link: 'wealth-foundations.html'
+      }
+    };
 
-    // Wishlist toggle
-    document.querySelectorAll('.wishlist').forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const icon = this.querySelector('i');
-        if (icon.classList.contains('far')) {
-          icon.classList.remove('far');
-          icon.classList.add('fas');
-          this.style.color = '#ff6b6b';
-        } else {
-          icon.classList.remove('fas');
-          icon.classList.add('far');
-          this.style.color = 'var(--gold)';
+    // Wishlist functionality
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistPopup = document.getElementById('wishlist-popup');
+    const overlay = document.getElementById('overlay');
+    const wishlistToggle = document.getElementById('wishlist-toggle');
+    const closeWishlist = document.getElementById('close-wishlist');
+    const wishlistItemsContainer = document.getElementById('wishlist-items-container');
+    const wishlistCounter = document.getElementById('wishlist-counter');
+
+    // Update wishlist counter
+    function updateWishlistCounter() {
+      wishlistCounter.textContent = wishlist.length;
+    }
+
+    // Toggle wishlist popup
+    function toggleWishlist() {
+      wishlistPopup.classList.toggle('open');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = wishlistPopup.classList.contains('open') ? 'hidden' : 'auto';
+    }
+
+    // Render wishlist items
+    function renderWishlistItems() {
+      if (wishlist.length === 0) {
+        wishlistItemsContainer.innerHTML = `
+          <div class="wishlist-empty">
+            <p>Your wishlist is empty</p>
+            <p>Add products by clicking the heart icon</p>
+          </div>
+        `;
+        return;
+      }
+
+      wishlistItemsContainer.innerHTML = '';
+      wishlist.forEach(productId => {
+        const product = products[productId];
+        if (product) {
+          const wishlistItem = document.createElement('div');
+          wishlistItem.className = 'wishlist-item';
+          wishlistItem.innerHTML = `
+            <img src="${product.image}" alt="${product.title}" class="wishlist-item-image">
+            <div class="wishlist-item-details">
+              <h3 class="wishlist-item-title">${product.title}</h3>
+              <div class="wishlist-item-price">
+                <span class="current-price">${product.price}</span>
+                <span class="original-price">${product.originalPrice}</span>
+              </div>
+              <div class="wishlist-item-actions">
+                <button class="wishlist-item-btn" onclick="window.location.href='${product.link}'">View Product</button>
+                <button class="wishlist-item-btn" onclick="window.location.href='#'">Buy Now</button>
+              </div>
+            </div>
+            <button class="remove-wishlist-item" data-product-id="${product.id}">
+              <i class="fas fa-times"></i>
+            </button>
+          `;
+          wishlistItemsContainer.appendChild(wishlistItem);
         }
       });
-    });
+
+      // Add event listeners to remove buttons
+      document.querySelectorAll('.remove-wishlist-item').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const productId = this.getAttribute('data-product-id');
+          removeFromWishlist(productId);
+        });
+      });
+    }
+
+    // Add to wishlist
+    function addToWishlist(productId) {
+      if (!wishlist.includes(productId)) {
+        wishlist.push(productId);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        updateWishlistCounter();
+        renderWishlistItems();
+      }
+    }
+
+    // Remove from wishlist
+    function removeFromWishlist(productId) {
+      wishlist = wishlist.filter(id => id !== productId);
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      updateWishlistCounter();
+      renderWishlistItems();
+      
+      // Update heart icon on product card
+      const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+      if (productCard) {
+        const heartIcon = productCard.querySelector('.wishlist-btn i');
+        heartIcon.classList.remove('fas');
+        heartIcon.classList.add('far');
+        productCard.querySelector('.wishlist-btn').classList.remove('active');
+      }
+    }
+
+    // Toggle product in wishlist
+    function toggleProductInWishlist(productId, button) {
+      const heartIcon = button.querySelector('i');
+      
+      if (wishlist.includes(productId)) {
+        removeFromWishlist(productId);
+        heartIcon.classList.remove('fas');
+        heartIcon.classList.add('far');
+        button.classList.remove('active');
+      } else {
+        addToWishlist(productId);
+        heartIcon.classList.remove('far');
+        heartIcon.classList.add('fas');
+        button.classList.add('active');
+      }
+    }
+
+    // Initialize wishlist buttons
+    function initWishlistButtons() {
+      document.querySelectorAll('.wishlist-btn').forEach(button => {
+        const productCard = button.closest('.product-card');
+        const productId = productCard.getAttribute('data-product-id');
+        
+        if (wishlist.includes(productId)) {
+          button.querySelector('i').classList.remove('far');
+          button.querySelector('i').classList.add('fas');
+          button.classList.add('active');
+        }
+        
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+          toggleProductInWishlist(productId, this);
+        });
+      });
+    }
+
+    // Event listeners
+    wishlistToggle.addEventListener('click', toggleWishlist);
+    closeWishlist.addEventListener('click', toggleWishlist);
+    overlay.addEventListener('click', toggleWishlist);
+
+    // Initialize
+    updateWishlistCounter();
+    renderWishlistItems();
+    initWishlistButtons();
 
     // Buy Now button functionality
     document.querySelectorAll('.buy-now').forEach(button => {
