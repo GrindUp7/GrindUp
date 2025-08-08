@@ -748,13 +748,20 @@
   padding-bottom: 20px; /* Creates space for signature */
 }
 
-.signature {
+.signature { 
   display: block;
   margin: auto;
   position: relative;
-  left: -20px; /* move 20px left */
+  left: -20px; /* move 20px left on larger screens */
+  top: -20px;  /* move 20px up */
 }
 
+/* On screens 600px wide or smaller, center it and adjust position */
+@media (max-width: 600px) {
+  .signature {
+    left: 0;
+    top: -18px; /* slightly up for mobile */
+  }
 
     /* ===== EXCLUSIVE NEWSLETTER ===== */
     .newsletter {
