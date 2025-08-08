@@ -227,17 +227,7 @@
       background: var(--gold-light);
       transform: translateY(-2px);
     }
-    /* Change all SVG icons in contact section to white */
-.contact-section svg {
-  stroke: white;
-}
-
-/* If you have any fill-based icons */
-.contact-section svg[fill] {
-  fill: white;
-  stroke: none; /* Remove stroke if using fill */
-}
-    
+  
     /* Responsive Design */
     @media (max-width: 768px) {
       .contact-content {
@@ -263,6 +253,20 @@
         margin-right: 0;
         margin-bottom: 1rem;
       }
+      /* Email icon */
+.contact-method:nth-child(1) svg {
+  stroke: white;
+}
+
+/* Business icon */
+.contact-method:nth-child(2) svg {
+  stroke: white;
+}
+
+/* Clock icon */
+.response-time svg {
+  stroke: white;
+}
     }
   </style>
 </head>
