@@ -749,12 +749,13 @@
 }
 
 .signature {
-  width: 0px;
+  width: auto; /* keep natural width of the image */
   display: block;
-  margin: auto;
-  text-align: center;
-  position: center;
+  margin: 0 auto 0 40%; /* 40% left margin - adjust to taste */
+  text-align: left; /* align relative to the container */
+  position: relative;
 }
+
     /* ===== EXCLUSIVE NEWSLETTER ===== */
     .newsletter {
       padding: 8rem 5%;
