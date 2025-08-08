@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Products | GrindUp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --dark-gray: #1A1A1A;
+      --medium-gray: #2A2A2A;
+      --gold: #D4AF37;
+      --gold-light: #E6C875;
+      --white: #FFFFFF;
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 25%),
+        linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(10,10,10,1));
+      z-index: -1;
+    }
+
+    .luxury-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .products-page {
+      max-width: 1200px;
+      margin: 100px auto 50px;
+      padding: 0 5%;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .page-header p {
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.8;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .product-card {
+      background: var(--dark-gray);
+      border: 1px solid rgba(212,175,55,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .stars {
+      color: var(--gold);
+    }
+
+    .rating-count {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .product-description {
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    .product-features {
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .feature-icon {
+      color: var(--gold);
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .current-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .original-price {
+      font-size: 1rem;
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .discount {
+      background: rgba(212,175,55,0.1);
+      color: var(--gold);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    .product-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .buy-now {
+      flex-grow: 1;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.8rem;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .buy-now:hover {
+      background: var(--gold-light);
+    }
+
+    .wishlist {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black);
+      border: 1px solid rgba(212,175,55,0.2);
+      color: var(--gold);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .wishlist:hover {
+      background: rgba(212,175,55,0.1);
+    }
+
+    .testimonials {
+      margin-top: 4rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--dark-gray);
+      border: 1px solid rgba(212,175,55,0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-family: var(--font-heading);
+    }
+
+    .author-info h4 {
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      margin-bottom: 0.2rem;
+    }
+
+    .author-info p {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .view-all-reviews {
+      display: block;
+      text-align: center;
+      color: var(--gold);
+      margin-top: 1rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .view-all-reviews:hover {
+      opacity: 0.8;
+    }
+
+    .faq-section {
+      margin-top: 4rem;
+    }
+
+    .faq-item {
+      background: var(--dark-gray);
+      border: 1px solid rgba(212,175,55,0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--gold);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      font-size: 1.2rem;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      margin-top: 0;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      margin-top: 1rem;
+    }
+
+    .faq-toggle {
+      color: var(--gold);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .product-cta {
+        flex-direction: column;
+      }
+      
+      .wishlist {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="luxury-nav">
+    <div class="nav-brand" onclick="window.location.href='index.html'">GRINDUP</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="products-page">
+    <div class="page-header">
+      <h1>Our Premium Products</h1>
+      <p>Discover our collection of money-making resources and tools</p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+      <!-- AI Income Ebook -->
+      <div class="product-card">
+        <div class="product-badge">BESTSELLER</div>
+        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Income Ebook" class="product-image">
+        <div class="product-info">
+          <h2 class="product-title">AI INCOME EBOOK</h2>
+          <div class="product-rating">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">1,250+ Reviews</div>
+          </div>
+          <p class="product-description">
+            The ultimate guide to building automated income streams with artificial intelligence. Learn how to leverage AI tools to create passive income with minimal effort.
+          </p>
+          <div class="product-features">
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Step-by-step AI automation strategies</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>75+ proven AI tools and platforms</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Case studies of successful implementations</span>
+            </div>
+          </div>
+          <div class="product-price">
+            <span class="current-price">$97</span>
+            <span class="original-price">$197</span>
+            <span class="discount">50% OFF</span>
+          </div>
+          <div class="product-cta">
+            <button class="buy-now">Buy Now</button>
+            <button class="wishlist">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crypto Blackbook -->
+      <div class="product-card">
+        <div class="product-badge">NEW</div>
+        <img src="https://images.unsplash.com/photo-1620336655055-088d06e36bf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Crypto Blackbook" class="product-image">
+        <div class="product-info">
+          <h2 class="product-title">CRYPTO BLACKBOOK</h2>
+          <div class="product-rating">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">850+ Reviews</div>
+          </div>
+          <p class="product-description">
+            Institutional-grade crypto trading strategies revealed for the first time. Master the techniques used by hedge funds and professional traders.
+          </p>
+          <div class="product-features">
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Advanced technical analysis methods</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Risk management frameworks</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Market cycle prediction models</span>
+            </div>
+          </div>
+          <div class="product-price">
+            <span class="current-price">$147</span>
+            <span class="original-price">$297</span>
+            <span class="discount">50% OFF</span>
+          </div>
+          <div class="product-cta">
+            <button class="buy-now">Buy Now</button>
+            <button class="wishlist">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wealth Foundations -->
+      <div class="product-card">
+        <div class="product-badge">POPULAR</div>
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Wealth Foundations" class="product-image">
+        <div class="product-info">
+          <h2 class="product-title">WEALTH FOUNDATIONS</h2>
+          <div class="product-rating">
+            <div class="stars">★★★★★</div>
+            <div class="rating-count">1,800+ Reviews</div>
+          </div>
+          <p class="product-description">
+            The complete system for building lasting wealth through smart investments. From beginner to advanced strategies in one comprehensive package.
+          </p>
+          <div class="product-features">
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Asset allocation frameworks</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Tax optimization strategies</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check-circle feature-icon"></i>
+              <span>Compound growth calculators</span>
+            </div>
+          </div>
+          <div class="product-price">
+            <span class="current-price">$197</span>
+            <span class="original-price">$397</span>
+            <span class="discount">50% OFF</span>
+          </div>
+          <div class="product-cta">
+            <button class="buy-now">Buy Now</button>
+            <button class="wishlist">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <h2 class="section-title">Success Stories</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "The AI Income Ebook helped me automate my first $5,000/month income stream. I was able to quit my job within 3 months of implementing these strategies."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JW</div>
+            <div class="author-info">
+              <h4>James W.</h4>
+              <p>Former Accountant</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "Crypto Blackbook's arbitrage strategies alone made me over $40,000 in 6 months. The institutional knowledge in this course is priceless."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SK</div>
+            <div class="author-info">
+              <h4>Sarah K.</h4>
+              <p>Day Trader</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "Wealth Foundations completely changed how I manage my money. My net worth has grown by 300% since following this system."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MT</div>
+            <div class="author-info">
+              <h4>Michael T.</h4>
+              <p>Small Business Owner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="reviews.html" class="view-all-reviews">View All Reviews →</a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I access the products after purchase?</span>
+          <i class="fas fa-chevron-down faq-toggle"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Immediately after purchase, you'll receive an email with download links and access to our members area. All products are digital and available instantly.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is there a money-back guarantee?</span>
+          <i class="fas fa-chevron-down faq-toggle"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! All our products come with a 30-day money-back guarantee. If you're not satisfied for any reason, simply email us for a full refund.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do I need prior experience to use these products?</span>
+          <i class="fas fa-chevron-down faq-toggle"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No, our products are designed to work for complete beginners while still providing advanced strategies for experienced users. We provide step-by-step guidance.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Are there any recurring fees?</span>
+          <i class="fas fa-chevron-down faq-toggle"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No, all our products are one-time purchases with lifetime access. Some optional services may have fees, but these are clearly marked.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+
+    // Wishlist toggle
+    document.querySelectorAll('.wishlist').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('far')) {
+          icon.classList.remove('far');
+          icon.classList.add('fas');
+          this.style.color = '#ff6b6b';
+        } else {
+          icon.classList.remove('fas');
+          icon.classList.add('far');
+          this.style.color = 'var(--gold)';
+        }
+      });
+    });
+
+    // Buy Now button functionality
+    document.querySelectorAll('.buy-now').forEach(button => {
+      button.addEventListener('click', function() {
+        const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
+        alert(`Thank you for your interest in ${productTitle}! You'll be redirected to checkout.`);
+      });
+    });
+
+    // Smooth scroll to top when clicking logo
+    document.querySelector('.nav-brand').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
