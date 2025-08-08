@@ -744,16 +744,17 @@
   line-height: 1.8;
   margin-bottom: 3rem;
   font-size: 1.1rem;
+  position: relative; /* Needed for signature positioning */
+  padding-bottom: 20px; /* Creates space for signature */
 }
 
-/* Update your existing signature CSS with these changes */
 .signature {
   width: 150px;
-  margin: -20px auto 0 auto;  /* Top margin negative to pull up, auto for horizontal centering */
   display: block;
+  margin: -15px auto 0 auto; /* Pulls up 15px and centers */
   text-align: center;
-  position: relative;  /* Allows fine-tuning with top/left */
-  top: -10px;          /* Pulls the signature up slightly */
+  position: relative;
+  top: -10px; /* Additional upward nudge */
 }
     /* ===== EXCLUSIVE NEWSLETTER ===== */
     .newsletter {
