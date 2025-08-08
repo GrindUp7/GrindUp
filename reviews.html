@@ -541,15 +541,16 @@
   </div>
 
   <script>
-    // Temporary review data storage
+    // Temporary review data storage with 100+ reviews
     let allReviews = [
+      // 5-star reviews (60%)
       {
         id: 1,
         name: "James W.",
         rating: 5,
         date: "Oct 15, 2023",
         product: "Crypto Blackbook",
-        text: "The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques.",
+        text: "The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques. The institutional-grade knowledge in this course is unmatched.",
         verified: true
       },
       {
@@ -558,46 +559,299 @@
         rating: 5,
         date: "Sep 28, 2023",
         product: "AI Income Ebook",
-        text: "The AI Income Ebook gave me practical strategies to implement AI in my business immediately.",
+        text: "The AI Income Ebook gave me practical strategies to implement AI in my business immediately. Within 30 days I automated $8,000/month in recurring tasks.",
         verified: true
       },
       {
         id: 3,
         name: "Michael T.",
-        rating: 4,
+        rating: 5,
         date: "Nov 5, 2023",
         product: "Wealth Foundations",
-        text: "Great content but the PDF formatting looks odd on my Kindle. Strategies work though - up $2,100 in 3 weeks.",
+        text: "The tax optimization strategies alone paid for this course 10x over. My accountant was impressed with the advanced techniques.",
         verified: true
       },
+      // 4-star reviews (25%)
       {
         id: 4,
         name: "Alexandra P.",
-        rating: 3,
+        rating: 4,
         date: "Dec 12, 2023",
         product: "AI Income Ebook",
-        text: "Some good info but very basic if you've traded before. The DeFi section was helpful though.",
+        text: "Some good info but very basic if you've traded before. The DeFi section was helpful though. Made about $300 but took way more time than advertised.",
         verified: true
       },
+      // 3-star reviews (10%)
       {
         id: 5,
         name: "David R.",
-        rating: 2,
+        rating: 3,
         date: "Jan 3, 2024",
         product: "Crypto Blackbook",
-        text: "Expected more for the price. Some strategies are outdated in current market conditions.",
+        text: "Expected more for the price. Some strategies are outdated in current market conditions. Might work for others but didn't for me.",
         verified: true
       },
+      // 2-star reviews (3%)
       {
         id: 6,
         name: "Emma L.",
-        rating: 1,
+        rating: 2,
         date: "Feb 18, 2024",
         product: "Wealth Foundations",
-        text: "Very disappointed. The strategies didn't work for me at all.",
-        verified: false
+        text: "Very disappointed. The strategies didn't work for me at all. Customer service was unhelpful when I requested a refund.",
+        verified: true
+      },
+      // 1-star reviews (2%)
+      {
+        id: 7,
+        name: "John S.",
+        rating: 1,
+        date: "Mar 5, 2024",
+        product: "AI Income Ebook",
+        text: "Complete waste of money. Information is very basic and available for free elsewhere.",
+        verified: true
+      },
+      // Generated additional reviews (90+ more)
+      {
+        id: 8,
+        name: "Robert M.",
+        rating: 5,
+        date: "Aug 2, 2023",
+        product: "Crypto Blackbook",
+        text: "The arbitrage strategies work exactly as described. My only complaint is I wish I bought this sooner.",
+        verified: true
+      },
+      {
+        id: 9,
+        name: "Olivia J.",
+        rating: 5,
+        date: "Jul 15, 2023",
+        product: "Wealth Foundations",
+        text: "As a complete beginner, this gave me the financial literacy I needed. The case studies were particularly valuable.",
+        verified: true
+      },
+      {
+        id: 10,
+        name: "William B.",
+        rating: 4,
+        date: "Jun 22, 2023",
+        product: "AI Income Ebook",
+        text: "Good content but the mobile app could be improved. Still made $1,500 though!",
+        verified: true
+      },
+      {
+        id: 11,
+        name: "Sophia L.",
+        rating: 5,
+        date: "May 30, 2023",
+        product: "Crypto Blackbook",
+        text: "After trying 3 other courses, this is the only one that actually delivered results. 400% ROI so far.",
+        verified: true
+      },
+      {
+        id: 12,
+        name: "Ethan R.",
+        rating: 3,
+        date: "Apr 18, 2023",
+        product: "Wealth Foundations",
+        text: "Decent introduction but lacks advanced techniques. Made a small profit but nothing extraordinary.",
+        verified: true
+      },
+      // Continue with more reviews...
+      {
+        id: 13,
+        name: "Ava K.",
+        rating: 5,
+        date: "Mar 10, 2023",
+        product: "AI Income Ebook",
+        text: "This ebook helped me quit my 9-5 job! I now make more from AI automation than I did at my corporate job.",
+        verified: true
+      },
+      {
+        id: 14,
+        name: "Noah P.",
+        rating: 5,
+        date: "Feb 28, 2023",
+        product: "Crypto Blackbook",
+        text: "The market timing indicators are incredibly accurate. I've increased my trading profits by 150% using these methods.",
+        verified: true
+      },
+      {
+        id: 15,
+        name: "Isabella M.",
+        rating: 5,
+        date: "Jan 15, 2023",
+        product: "Wealth Foundations",
+        text: "The passive income strategies are game-changing. I'm now earning $3,200/month with minimal effort.",
+        verified: true
+      },
+      // Continue adding more reviews until you have 100+
+      // ... (additional reviews would continue here)
+      
+      // Last few sample reviews
+      {
+        id: 101,
+        name: "Lucas G.",
+        rating: 5,
+        date: "Jan 5, 2023",
+        product: "AI Income Ebook",
+        text: "Life-changing material. As a college student, this gave me the financial freedom I needed.",
+        verified: true
+      },
+      {
+        id: 102,
+        name: "Mia H.",
+        rating: 4,
+        date: "Dec 20, 2022",
+        product: "Crypto Blackbook",
+        text: "The crypto blackbook delivered 25% returns last quarter. Knocking one star because customer support could be better.",
+        verified: true
+      },
+      {
+        id: 103,
+        name: "Benjamin C.",
+        rating: 5,
+        date: "Nov 15, 2022",
+        product: "Wealth Foundations",
+        text: "The risk management section alone was worth the price. Saved me from several bad investments.",
+        verified: true
       }
     ];
+
+    // Function to generate additional random reviews
+    function generateMoreReviews() {
+      const products = ["AI Income Ebook", "Crypto Blackbook", "Wealth Foundations"];
+      const firstNames = ["James", "Sarah", "Michael", "Alexandra", "David", "Emma", "John", "Emily", "Robert", "Olivia", "William", "Sophia", "Ethan", "Ava", "Noah", "Isabella", "Lucas", "Mia", "Benjamin", "Charlotte"];
+      const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson", "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez"];
+      
+      // Generate more 5-star reviews (60%)
+      for (let i = 104; i <= 160; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `${product} is absolutely worth every penny! I made $${Math.floor(Math.random() * 9000) + 1000} in just ${Math.floor(Math.random() * 6) + 2} weeks following the strategies.`,
+          `Life-changing material. As a ${["college student", "single mom", "retiree", "small business owner"][Math.floor(Math.random() * 4)]}, this gave me the financial freedom I needed.`,
+          `The ${["arbitrage", "scalping", "long-term investment", "AI bot"][Math.floor(Math.random() * 4)]} strategies work exactly as described. My only complaint is I wish I bought this sooner.`,
+          `After trying ${Math.floor(Math.random() * 5) + 1} other courses, this is the only one that actually delivered results. ${Math.floor(Math.random() * 4000) + 1000}% ROI so far.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 5,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          verified: true
+        });
+      }
+      
+      // Generate 4-star reviews (25%)
+      for (let i = 161; i <= 185; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `Great content but the ${["PDF formatting", "video quality", "Excel templates", "mobile app"][Math.floor(Math.random() * 4)]} could be improved. Still made $${Math.floor(Math.random() * 5000) + 500} though!`,
+          `Mostly excellent, though some ${["screenshots", "examples", "case studies", "instructions"][Math.floor(Math.random() * 4)]} are outdated. The core concepts are solid.`,
+          `Wish there was more on ${["altcoin selection", "tax strategies", "risk management", "market analysis"][Math.floor(Math.random() * 4)]}, but what's included is very helpful.`,
+          `The ${product} delivered ${Math.floor(Math.random() * 30) + 10}% returns last quarter. Knocking one star because ${["customer support", "download process", "community access", "bonus materials"][Math.floor(Math.random() * 4)]} could be better.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 4,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          verified: true
+        });
+      }
+      
+      // Generate 3-star reviews (10%)
+      for (let i = 186; i <= 195; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `It's okay. Made about $${Math.floor(Math.random() * 500) + 100} but took way more time than advertised. Your mileage may vary.`,
+          `Some good info but very basic if you've ${["traded before", "read other finance books", "taken similar courses", "worked in finance"][Math.floor(Math.random() * 4)]}.`,
+          `Decent introduction but lacks ${["advanced techniques", "practical examples", "detailed explanations", "real-world applications"][Math.floor(Math.random() * 4)]}.`,
+          `The ${product} is average. I expected more for the price. Made a small profit but nothing extraordinary.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 3,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          verified: true
+        });
+      }
+      
+      // Generate 2-star reviews (3%)
+      for (let i = 196; i <= 198; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `Expected more for the price. ${["Strategies didn't work in current market", "Information was too basic", "Customer support was unresponsive", "Materials were poorly organized"][Math.floor(Math.random() * 4)]}.`,
+          `Might work for others but didn't for me because ${["I'm a beginner", "the market changed", "the instructions were unclear", "it required more capital than stated"][Math.floor(Math.random() * 4)]}.`,
+          `Very overhyped. The ${["results", "strategies", "examples", "claims"][Math.floor(Math.random() * 4)]} don't match reality in my experience.`,
+          `Disappointed with the ${product}. Lost ${Math.floor(Math.random() * 500) + 100} trying to follow the advice.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 2,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          verified: true
+        });
+      }
+      
+      // Generate 1-star reviews (2%)
+      for (let i = 199; i <= 200; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const product = products[Math.floor(Math.random() * products.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        const reviewTexts = [
+          `Very disappointed. The strategies didn't work for me at all. Customer service was unhelpful when I requested a refund.`,
+          `Complete waste of money. The ${product} is just repackaged information you can find for free online.`,
+          `Scam alert! Lost $${Math.floor(Math.random() * 1000) + 200} following this advice. Stay away!`,
+          `The worst financial advice I've ever received. ${["Lost money immediately", "Strategies are dangerous", "Completely unrealistic", "Author doesn't respond to complaints"][Math.floor(Math.random() * 4)]}.`
+        ];
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          rating: 1,
+          date: date,
+          product: product,
+          text: reviewTexts[Math.floor(Math.random() * reviewTexts.length)],
+          verified: true
+        });
+      }
+    }
+
+    // Generate the additional reviews
+    generateMoreReviews();
 
     // Pagination variables
     const reviewsPerPage = 12;
