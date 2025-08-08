@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Reviews | GrindUp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -104,16 +104,79 @@
       opacity: 0.8;
     }
 
-    .reviews-section {
-      margin-top: 4rem;
+    .stats-overview {
+      display: flex;
+      justify-content: space-around;
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(212,175,55,0.1);
     }
 
-    .section-title {
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
       font-family: var(--font-heading);
       font-size: 2.5rem;
       color: var(--gold);
-      margin-bottom: 2rem;
-      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .rating-distribution {
+      background: var(--dark-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .rating-distribution h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold-light);
+    }
+
+    .rating-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .rating-stars {
+      width: 100px;
+      color: var(--gold);
+    }
+
+    .rating-progress {
+      flex-grow: 1;
+      height: 20px;
+      background: var(--medium-gray);
+      border-radius: 10px;
+      margin: 0 1rem;
+      overflow: hidden;
+    }
+
+    .rating-progress-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    .rating-count {
+      width: 80px;
+      text-align: right;
+      font-size: 0.9rem;
     }
 
     .reviews-grid {
@@ -134,6 +197,8 @@
 
     .review-card:hover {
       border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     .reviewer-info {
@@ -170,13 +235,8 @@
       color: var(--gold);
     }
 
-    .review-product {
-      display: inline-block;
-      background: rgba(212,175,55,0.1);
-      padding: 0.3rem 0.8rem;
-      border-radius: 30px;
+    .review-date {
       font-size: 0.8rem;
-      margin-bottom: 1rem;
     }
 
     .review-text {
@@ -302,8 +362,7 @@
     }
 
     .form-group input,
-    .form-group textarea,
-    .form-group select {
+    .form-group textarea {
       width: 100%;
       padding: 1rem;
       background: var(--black);
@@ -355,7 +414,7 @@
       background: var(--gold-light);
     }
 
-    /* Custom Popup Notification */
+    /* Notification Styles */
     .notification {
       position: fixed;
       top: 20px;
@@ -384,6 +443,20 @@
       color: var(--gold);
     }
 
+    .notification-content {
+      flex-grow: 1;
+    }
+
+    .notification-title {
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .notification-message {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
     .notification-close {
       margin-left: auto;
       cursor: pointer;
@@ -402,6 +475,11 @@
       
       .page-header h1 {
         font-size: 2.5rem;
+      }
+      
+      .stats-overview {
+        flex-direction: column;
+        gap: 1.5rem;
       }
 
       .notification {
@@ -433,19 +511,18 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
-      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
     </div>
   </nav>
 
-  <!-- Custom Notification -->
+  <!-- Notification -->
   <div class="notification" id="notification">
     <div class="notification-icon">
       <i class="fas fa-check-circle"></i>
     </div>
     <div class="notification-content">
-      <div class="notification-title">Thank You!</div>
-      <div class="notification-message">Your review has been submitted successfully.</div>
+      <div class="notification-title" id="notification-title">Success</div>
+      <div class="notification-message" id="notification-message">Your review has been submitted successfully.</div>
     </div>
     <div class="notification-close" onclick="hideNotification()">
       <i class="fas fa-times"></i>
@@ -456,21 +533,74 @@
   <div class="reviews-page">
     <div class="page-header">
       <h1>Customer Reviews</h1>
-      <p>Read what our customers say about our premium products and services</p>
+      <p>Join 5,000+ members who transformed their financial future</p>
     </div>
 
-    <!-- Reviews Section -->
-    <section class="reviews-section">
-      <h2 class="section-title">Client Testimonials</h2>
-      
-      <div class="reviews-grid" id="reviews-container">
-        <!-- Reviews will be loaded here via JavaScript -->
+    <!-- Stats Overview -->
+    <div class="stats-overview">
+      <div class="stat-item">
+        <div class="stat-number" id="total-reviews">5,000+</div>
+        <div class="stat-label">Total Reviews</div>
       </div>
-      
-      <div class="pagination" id="pagination">
-        <!-- Pagination will be loaded here via JavaScript -->
+      <div class="stat-item">
+        <div class="stat-number" id="avg-rating">4.8</div>
+        <div class="stat-label">Average Rating</div>
       </div>
-    </section>
+      <div class="stat-item">
+        <div class="stat-number" id="recommend-rate">97%</div>
+        <div class="stat-label">Would Recommend</div>
+      </div>
+    </div>
+
+    <!-- Rating Distribution -->
+    <div class="rating-distribution">
+      <h2>Rating Breakdown</h2>
+      <div class="rating-bar">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" id="rating-5" style="width: 60%;"></div>
+        </div>
+        <div class="rating-count" id="count-5">3,000+</div>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★★★★☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" id="rating-4" style="width: 25%;"></div>
+        </div>
+        <div class="rating-count" id="count-4">1,250+</div>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★★★☆☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" id="rating-3" style="width: 10%;"></div>
+        </div>
+        <div class="rating-count" id="count-3">500+</div>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★★☆☆☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" id="rating-2" style="width: 3%;"></div>
+        </div>
+        <div class="rating-count" id="count-2">150+</div>
+      </div>
+      <div class="rating-bar">
+        <div class="rating-stars">★☆☆☆☆</div>
+        <div class="rating-progress">
+          <div class="rating-progress-fill" id="rating-1" style="width: 2%;"></div>
+        </div>
+        <div class="rating-count" id="count-1">100+</div>
+      </div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="reviews-grid" id="reviews-container">
+      <!-- Reviews will be loaded here via JavaScript -->
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+      <!-- Pagination will be loaded here via JavaScript -->
+    </div>
 
     <!-- Review Form -->
     <div class="review-form-container">
@@ -482,15 +612,7 @@
         </div>
         <div class="form-group">
           <label for="reviewer-email">Email (will not be published)</label>
-          <input type="email" id="reviewer-email">
-        </div>
-        <div class="form-group">
-          <label for="review-product">Product Reviewed</label>
-          <select id="review-product" required>
-            <option value="AI Income Ebook">AI Income Ebook</option>
-            <option value="Crypto Blackbook">Crypto Blackbook</option>
-            <option value="Wealth Foundations">Wealth Foundations</option>
-          </select>
+          <input type="email" id="reviewer-email" required>
         </div>
         <div class="form-group">
           <label>Your Rating</label>
@@ -513,18 +635,17 @@
   </div>
 
   <script>
-    // Sample review data (100+ reviews)
+    // Sample review data storage with 100+ reviews
     let allReviews = [
+      // 5-star reviews (60%)
       {
         id: 1,
         name: "James W.",
         email: "james@example.com",
         rating: 5,
         date: "Oct 15, 2023",
-        product: "AI Income Ebook",
-        text: "The AI Income Ebook completely transformed my business. I've automated $8,000/month in recurring income using these strategies.",
-        verified: true,
-        reported: false
+        text: "The Crypto Blackbook completely transformed my trading strategy. I've 3x my portfolio in 6 months using these techniques. The institutional-grade knowledge in this course is unmatched.",
+        verified: true
       },
       {
         id: 2,
@@ -532,32 +653,161 @@
         email: "sarah@example.com",
         rating: 5,
         date: "Sep 28, 2023",
-        product: "Crypto Blackbook",
-        text: "The arbitrage strategies in the Crypto Blackbook are game-changing. 3x my portfolio in 6 months.",
-        verified: true,
-        reported: false
+        text: "The AI Income Ebook gave me practical strategies to implement AI in my business immediately. Within 30 days I automated $8,000/month in recurring tasks.",
+        verified: true
       },
-      // Add 98+ more reviews here...
       {
-        id: 100,
-        name: "Alex G.",
-        email: "alex@example.com",
+        id: 3,
+        name: "Michael T.",
+        email: "michael@example.com",
+        rating: 5,
+        date: "Nov 5, 2023",
+        text: "The tax optimization strategies alone paid for this course 10x over. My accountant was impressed with the advanced techniques.",
+        verified: true
+      },
+      // 4-star reviews (25%)
+      {
+        id: 4,
+        name: "Alexandra P.",
+        email: "alexandra@example.com",
         rating: 4,
-        date: "Jan 5, 2024",
-        product: "Wealth Foundations",
-        text: "Great content with actionable advice. Helped me organize my finances better.",
-        verified: true,
-        reported: false
+        date: "Dec 12, 2023",
+        text: "Some good info but very basic if you've traded before. The DeFi section was helpful though. Made about $300 but took way more time than advertised.",
+        verified: true
+      },
+      // 3-star reviews (10%)
+      {
+        id: 5,
+        name: "David R.",
+        email: "david@example.com",
+        rating: 3,
+        date: "Jan 3, 2024",
+        text: "Expected more for the price. Some strategies are outdated in current market conditions. Might work for others but didn't for me.",
+        verified: true
+      },
+      // 2-star reviews (3%)
+      {
+        id: 6,
+        name: "Emma L.",
+        email: "emma@example.com",
+        rating: 2,
+        date: "Feb 18, 2024",
+        text: "Very disappointed. The strategies didn't work for me at all. Customer service was unhelpful when I requested a refund.",
+        verified: true
+      },
+      // 1-star reviews (2%)
+      {
+        id: 7,
+        name: "John S.",
+        email: "john@example.com",
+        rating: 1,
+        date: "Mar 5, 2024",
+        text: "Complete waste of money. Information is very basic and available for free elsewhere.",
+        verified: true
       }
     ];
 
+    // Generate more reviews to reach 100+
+    function generateMoreReviews() {
+      const firstNames = ["James", "Sarah", "Michael", "Alexandra", "David", "Emma", "John", "Emily", "Robert", "Olivia", "William", "Sophia", "Ethan", "Ava", "Noah", "Isabella", "Lucas", "Mia", "Benjamin", "Charlotte"];
+      const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson", "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez"];
+      
+      // Generate more 5-star reviews (60%)
+      for (let i = 8; i <= 60; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          email: `${firstName.toLowerCase()}@example.com`,
+          rating: 5,
+          date: date,
+          text: `Absolutely worth every penny! I made $${Math.floor(Math.random() * 9000) + 1000} in just ${Math.floor(Math.random() * 6) + 2} weeks following the strategies.`,
+          verified: true
+        });
+      }
+      
+      // Generate 4-star reviews (25%)
+      for (let i = 61; i <= 85; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          email: `${firstName.toLowerCase()}@example.com`,
+          rating: 4,
+          date: date,
+          text: `Great content but could be improved. Still made $${Math.floor(Math.random() * 5000) + 500} though!`,
+          verified: true
+        });
+      }
+      
+      // Generate 3-star reviews (10%)
+      for (let i = 86; i <= 95; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          email: `${firstName.toLowerCase()}@example.com`,
+          rating: 3,
+          date: date,
+          text: "It's okay. Made some profit but took more time than expected.",
+          verified: true
+        });
+      }
+      
+      // Generate 2-star reviews (3%)
+      for (let i = 96; i <= 98; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          email: `${firstName.toLowerCase()}@example.com`,
+          rating: 2,
+          date: date,
+          text: "Expected more for the price. Strategies didn't work well for me.",
+          verified: true
+        });
+      }
+      
+      // Generate 1-star reviews (2%)
+      for (let i = 99; i <= 100; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const date = new Date(2023, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        allReviews.push({
+          id: i,
+          name: `${firstName} ${lastName.charAt(0)}.`,
+          email: `${firstName.toLowerCase()}@example.com`,
+          rating: 1,
+          date: date,
+          text: "Very disappointed. The strategies didn't work at all.",
+          verified: true
+        });
+      }
+    }
+
     // Admin email (for demo purposes)
-    const ADMIN_EMAIL = "aihustle77@gmail.com";
+    const ADMIN_EMAIL = "admin@grindup.com";
     let currentUserEmail = null;
 
     // Pagination variables
     const reviewsPerPage = 12;
     let currentPage = 1;
+
+    // Generate additional reviews
+    generateMoreReviews();
 
     // Load reviews from local storage if available
     function loadReviews() {
@@ -566,11 +816,40 @@
         allReviews = JSON.parse(savedReviews);
       }
       displayReviews(currentPage);
+      updateStats();
+    }
+
+    // Calculate and update statistics
+    function updateStats() {
+      const verifiedReviews = allReviews.filter(review => review.verified && !review.reported);
+      const totalReviews = verifiedReviews.length;
+      const totalRating = verifiedReviews.reduce((sum, review) => sum + review.rating, 0);
+      const avgRating = totalReviews > 0 ? (totalRating / totalReviews).toFixed(1) : 0;
+      
+      // Calculate rating distribution
+      const ratingCounts = [0, 0, 0, 0, 0];
+      verifiedReviews.forEach(review => {
+        ratingCounts[review.rating - 1]++;
+      });
+
+      // Update UI
+      document.getElementById('total-reviews').textContent = totalReviews.toLocaleString();
+      document.getElementById('avg-rating').textContent = avgRating;
+      document.getElementById('recommend-rate').textContent = 
+        totalReviews > 0 ? Math.round((ratingCounts[3] + ratingCounts[4]) / totalReviews * 100) + '%' : '0%';
+      
+      // Update rating distribution bars
+      for (let i = 1; i <= 5; i++) {
+        const count = ratingCounts[i - 1];
+        const percentage = totalReviews > 0 ? (count / totalReviews * 100) : 0;
+        document.getElementById(`rating-${i}`).style.width = `${percentage}%`;
+        document.getElementById(`count-${i}`).textContent = count.toLocaleString();
+      }
     }
 
     // Display reviews for current page
     function displayReviews(page) {
-      const verifiedReviews = allReviews.filter(review => !review.reported);
+      const verifiedReviews = allReviews.filter(review => review.verified && !review.reported);
       const startIndex = (page - 1) * reviewsPerPage;
       const endIndex = startIndex + reviewsPerPage;
       const reviewsToShow = verifiedReviews.slice(startIndex, endIndex);
@@ -593,7 +872,7 @@
         
         reviewCard.innerHTML = `
           <div class="reviewer-info">
-            <img src="assets/images/user${Math.floor(Math.random() * 6) + 1}.jpg" alt="${review.name}" class="reviewer-avatar">
+            <img src="https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}" alt="${review.name}" class="reviewer-avatar">
             <div class="reviewer-details">
               <h3>${review.name}</h3>
               <div class="review-meta">
@@ -603,7 +882,6 @@
               </div>
             </div>
           </div>
-          <span class="review-product">${review.product}</span>
           <div class="review-text">
             <p>${review.text}</p>
           </div>
@@ -639,9 +917,6 @@
           showNotification('Review Reported', 'This review has been reported and will be reviewed by our team.');
           menu.classList.remove('show');
           displayReviews(currentPage);
-          
-          // In a real app, you would send this to your backend
-          console.log(`Review #${review.id} reported by ${currentUserEmail || 'anonymous'}`);
         });
         
         if (deleteBtn) {
@@ -672,7 +947,7 @@
 
     // Update pagination buttons
     function updatePagination() {
-      const verifiedReviews = allReviews.filter(review => !review.reported);
+      const verifiedReviews = allReviews.filter(review => review.verified && !review.reported);
       const totalPages = Math.ceil(verifiedReviews.length / reviewsPerPage);
       const paginationContainer = document.getElementById('pagination');
       paginationContainer.innerHTML = '';
@@ -761,11 +1036,11 @@
       });
     });
 
-    // Show notification function
+    // Notification functions
     function showNotification(title, message) {
       const notification = document.getElementById('notification');
-      const notificationTitle = notification.querySelector('.notification-title');
-      const notificationMessage = notification.querySelector('.notification-message');
+      const notificationTitle = document.getElementById('notification-title');
+      const notificationMessage = document.getElementById('notification-message');
       
       notificationTitle.textContent = title;
       notificationMessage.textContent = message;
@@ -778,7 +1053,6 @@
       }, 5000);
     }
 
-    // Hide notification function
     function hideNotification() {
       document.getElementById('notification').classList.remove('show');
     }
@@ -789,23 +1063,26 @@
       
       const name = document.getElementById('reviewer-name').value;
       const email = document.getElementById('reviewer-email').value;
-      const product = document.getElementById('review-product').value;
       const rating = document.getElementById('rating-value').value;
       const text = document.getElementById('review-text').value;
 
-      // Set current user email (for demo purposes)
+      if (!rating) {
+        showNotification('Rating Required', 'Please select a rating before submitting.');
+        return;
+      }
+
+      // Set current user email
       currentUserEmail = email;
 
       // Create new review object
       const newReview = {
-        id: Date.now(), // Simple unique ID
+        id: allReviews.length + 1,
         name: name,
         email: email,
-        product: product,
         rating: parseInt(rating),
         text: text,
         date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
-        verified: true,
+        verified: false, // Will need manual approval
         reported: false
       };
       
@@ -823,12 +1100,10 @@
       });
       ratingValue.value = '';
       
-      // Show beautiful notification
-      showNotification('Thank You!', 'Your review has been submitted successfully.');
+      showNotification('Thank You!', 'Your review has been submitted and will appear after approval.');
       
-      // Refresh display
-      currentPage = 1;
-      displayReviews(currentPage);
+      // Refresh stats (but new review won't show until verified)
+      updateStats();
     });
 
     // Initialize when page loads
