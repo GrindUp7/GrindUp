@@ -227,6 +227,16 @@
       background: var(--gold-light);
       transform: translateY(-2px);
     }
+    /* Change all SVG icons in contact section to white */
+.contact-section svg {
+  stroke: white;
+}
+
+/* If you have any fill-based icons */
+.contact-section svg[fill] {
+  fill: white;
+  stroke: none; /* Remove stroke if using fill */
+}
     
     /* Responsive Design */
     @media (max-width: 768px) {
