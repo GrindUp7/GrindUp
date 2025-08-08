@@ -746,12 +746,14 @@
   font-size: 1.1rem;
 }
 
+/* Update your existing signature CSS with these changes */
 .signature {
-  width: 0px;
-  height: 0px;
-  margin: 0 auto;
-  opacity: 0.9;
-  max-width: 0%;
+  width: 150px;
+  margin: -20px auto 0 auto;  /* Top margin negative to pull up, auto for horizontal centering */
+  display: block;
+  text-align: center;
+  position: relative;  /* Allows fine-tuning with top/left */
+  top: -10px;          /* Pulls the signature up slightly */
 }
     /* ===== EXCLUSIVE NEWSLETTER ===== */
     .newsletter {
