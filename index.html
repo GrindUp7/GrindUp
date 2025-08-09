@@ -185,6 +185,23 @@
       width: 100%;
     }
 
+    .auth-trigger {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.7rem 1.5rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 30px;
+    }
+
+    .auth-trigger:hover {
+      background: rgba(212,175,55,0.1);
+    }
+
     .mobile-menu-toggle {
       display: none;
       background: transparent;
@@ -379,6 +396,7 @@
       position: relative;
       opacity: 0;
       transform: translateY(30px);
+      cursor: pointer;
     }
 
     .product-card.visible {
@@ -394,6 +412,15 @@
       transform: translateY(-10px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       border-color: var(--gold);
+    }
+
+    .product-card-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 60px);
+      z-index: 1;
     }
 
     .product-badge {
@@ -436,6 +463,8 @@
 
     .product-info {
       padding: 2rem;
+      position: relative;
+      z-index: 2;
     }
 
     .product-info h3 {
@@ -479,6 +508,8 @@
       border-radius: 4px;
       text-align: center;
       display: block;
+      position: relative;
+      z-index: 3;
     }
 
     .view-product:hover {
@@ -894,6 +925,8 @@
       position: relative;
       transform: translateY(20px);
       transition: transform 0.3s ease;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
     .modal.active .modal-content {
@@ -914,6 +947,226 @@
 
     .close-modal:hover {
       color: var(--gold);
+    }
+
+    /* ===== CUSTOM NOTIFICATION ===== */
+    .notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--dark-gray);
+      border: 1px solid var(--gold);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      z-index: 3000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .notification.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .notification-icon {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .notification h3 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .notification p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .notification-btn {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .notification-btn:hover {
+      background: var(--gold-light);
+    }
+
+    /* ===== ENHANCED REVIEW MODAL ===== */
+    .review-modal-content {
+      background: var(--dark-gray);
+      border: 1px solid var(--gold);
+      max-width: 600px;
+      width: 90%;
+      padding: 3rem;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .review-modal-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .review-modal-header h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-modal-header p {
+      opacity: 0.8;
+    }
+
+    .rating-input {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .rating-input p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .star {
+      font-size: 2rem;
+      color: var(--medium-gray);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .star:hover, .star.active {
+      color: var(--gold);
+      transform: scale(1.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 1rem;
+      background: var(--medium-gray);
+      border: 1px solid var(--gold);
+      color: var(--white);
+      font-family: var(--font-body);
+      resize: vertical;
+    }
+
+    /* ===== LOGIN MODAL ===== */
+    .auth-modal-content {
+      background: var(--dark-gray);
+      border: 1px solid var(--gold);
+      max-width: 500px;
+      width: 90%;
+      padding: 3rem;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .auth-modal-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .auth-modal-header h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-modal-header p {
+      opacity: 0.8;
+    }
+
+    .auth-form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-form-group input {
+      width: 100%;
+      padding: 1rem;
+      background: var(--medium-gray);
+      border: 1px solid var(--gold);
+      color: var(--white);
+      font-family: var(--font-body);
+    }
+
+    .auth-form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .auth-form-actions a {
+      color: var(--gold-light);
+      font-size: 0.9rem;
+    }
+
+    .auth-form-actions a:hover {
+      text-decoration: underline;
+    }
+
+    .auth-submit-btn {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .auth-submit-btn:hover {
+      background: var(--gold-light);
+    }
+
+    .auth-switch {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .auth-switch a {
+      color: var(--gold);
+      text-decoration: underline;
     }
 
     /* ===== ANIMATIONS ===== */
@@ -993,6 +1246,14 @@
         flex-direction: column;
         gap: 1rem;
       }
+
+      .review-modal-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .auth-modal-content {
+        padding: 2rem 1.5rem;
+      }
     }
 
     @media (max-width: 576px) {
@@ -1017,6 +1278,12 @@
         border-right: 1px solid var(--gold);
         border-bottom: none;
       }
+
+      .auth-form-actions {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -1029,6 +1296,14 @@
     </div>
   </div>
 
+  <!-- Notification Popup -->
+  <div class="notification" id="notification">
+    <div class="notification-icon">✓</div>
+    <h3 id="notification-title">Success</h3>
+    <p id="notification-message">Your action was completed successfully.</p>
+    <button class="notification-btn" id="notification-btn">OK</button>
+  </div>
+
   <!-- Main Container -->
   <div class="container">
     <!-- Luxury Navbar -->
@@ -1039,6 +1314,7 @@
         <a href="#reviews">Testimonials</a>
         <a href="reviews.html">All Reviews</a>
         <a href="#about">Our Ethos</a>
+        <button class="auth-trigger" id="login-btn">Login</button>
       </div>
       <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
     </nav>
@@ -1073,6 +1349,7 @@
       <div class="product-grid" id="product-grid">
         <!-- Product 1 -->
         <div class="product-card" data-category="ai business">
+          <a href="GrindUp_AI_Income_Ebook.html" class="product-card-link" aria-label="View AI Income Ebook"></a>
           <div class="product-badge bestseller">BESTSELLER</div>
           <div class="product-image">
             <img src="assets/Images/ebook-cover.jpg" alt="AI Income Ebook" loading="lazy">
@@ -1087,6 +1364,7 @@
         
         <!-- Product 2 -->
         <div class="product-card" data-category="crypto trading">
+          <a href="crypto-blackbook.html" class="product-card-link" aria-label="View Crypto Blackbook"></a>
           <div class="product-badge bestseller">BESTSELLER</div>
           <div class="product-image">
             <img src="assets/images/crypto-blackbook.jpg" alt="Crypto Blackbook" loading="lazy">
@@ -1101,6 +1379,7 @@
         
         <!-- Product 3 -->
         <div class="product-card" data-category="business">
+          <a href="wealth-foundations.html" class="product-card-link" aria-label="View Wealth Foundations"></a>
           <div class="product-badge free">FREE</div>
           <div class="product-image">
             <img src="assets/images/wealth-foundations.jpg" alt="Wealth Foundations" loading="lazy">
@@ -1267,9 +1546,12 @@
 
     <!-- Review Modal -->
     <div id="review-modal" class="modal">
-      <div class="modal-content">
+      <div class="review-modal-content">
         <button class="close-modal" aria-label="Close review modal">&times;</button>
-        <h3>Share Your Experience</h3>
+        <div class="review-modal-header">
+          <h3>Share Your Experience</h3>
+          <p>We value your feedback about our products</p>
+        </div>
         <form id="review-form">
           <div class="rating-input">
             <p>Your Rating:</p>
@@ -1288,6 +1570,63 @@
           </div>
           <button type="submit" class="cta-gold">Submit Review</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="auth-modal" class="modal">
+      <div class="auth-modal-content">
+        <button class="close-modal" aria-label="Close login modal">&times;</button>
+        <div class="auth-modal-header">
+          <h3>Welcome Back</h3>
+          <p>Access your exclusive content and member benefits</p>
+        </div>
+        <form id="login-form">
+          <div class="auth-form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="auth-form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+          </div>
+          <div class="auth-form-actions">
+            <a href="#forgot-password">Forgot password?</a>
+            <button type="submit" class="auth-submit-btn">Login</button>
+          </div>
+        </form>
+        <div class="auth-switch">
+          <p>Don't have an account? <a href="#" id="switch-to-signup">Sign up</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+      <div class="auth-modal-content">
+        <button class="close-modal" aria-label="Close signup modal">&times;</button>
+        <div class="auth-modal-header">
+          <h3>Join GrindUp</h3>
+          <p>Create your account to access premium content</p>
+        </div>
+        <form id="signup-form">
+          <div class="auth-form-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" required>
+          </div>
+          <div class="auth-form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" required>
+          </div>
+          <div class="auth-form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" required>
+          </div>
+          <button type="submit" class="auth-submit-btn">Create Account</button>
+        </form>
+        <div class="auth-switch">
+          <p>Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+        </div>
       </div>
     </div>
   </div>
@@ -1386,6 +1725,24 @@
       });
     });
 
+    // ===== PRODUCT CARD CLICKS =====
+    document.querySelectorAll('.product-card').forEach(card => {
+      const link = card.querySelector('.product-card-link');
+      const button = card.querySelector('.view-product');
+      
+      // Prevent the card link from triggering when clicking the button
+      button.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+      
+      // Make the entire card clickable except the button
+      card.addEventListener('click', function(e) {
+        if (!e.target.closest('.view-product')) {
+          link.click();
+        }
+      });
+    });
+
     // ===== SCROLL ANIMATIONS =====
     function checkVisibility() {
       const elements = document.querySelectorAll('.product-card, .review-card');
@@ -1418,15 +1775,28 @@
     });
 
     // ===== MODAL TOGGLE =====
+    const authModal = document.getElementById('auth-modal');
+    const signupModal = document.getElementById('signup-modal');
     const reviewModal = document.getElementById('review-modal');
+    const loginBtn = document.getElementById('login-btn');
     const leaveReviewBtn = document.getElementById('leave-review-btn');
     const closeModal = document.querySelectorAll('.close-modal');
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToLogin = document.getElementById('switch-to-login');
     
+    // Show login modal
+    loginBtn.addEventListener('click', function() {
+      authModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Show review modal
     leaveReviewBtn.addEventListener('click', function() {
       reviewModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
     
+    // Close modals
     closeModal.forEach(btn => {
       btn.addEventListener('click', function() {
         this.closest('.modal').classList.remove('active');
@@ -1442,6 +1812,19 @@
       }
     });
 
+    // Switch between login and signup
+    switchToSignup.addEventListener('click', function(e) {
+      e.preventDefault();
+      authModal.classList.remove('active');
+      signupModal.classList.add('active');
+    });
+
+    switchToLogin.addEventListener('click', function(e) {
+      e.preventDefault();
+      signupModal.classList.remove('active');
+      authModal.classList.add('active');
+    });
+
     // Star rating
     document.addEventListener('click', function(e) {
       if (e.target.classList.contains('star')) {
@@ -1450,38 +1833,76 @@
         document.getElementById('rating-value').value = rating;
         
         stars.forEach((star, index) => {
-          star.textContent = index < rating ? '★' : '☆';
+          if (index < rating) {
+            star.classList.add('active');
+            star.textContent = '★';
+          } else {
+            star.classList.remove('active');
+            star.textContent = '☆';
+          }
           star.setAttribute('aria-label', `${index < rating ? 'Filled' : 'Empty'} ${index + 1} star`);
         });
       }
     });
-    
+
+    // ===== NOTIFICATION SYSTEM =====
+    const notification = document.getElementById('notification');
+    const notificationBtn = document.getElementById('notification-btn');
+
+    function showNotification(title, message) {
+      document.getElementById('notification-title').textContent = title;
+      document.getElementById('notification-message').textContent = message;
+      notification.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideNotification() {
+      notification.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    notificationBtn.addEventListener('click', hideNotification);
+
     // ===== FORM SUBMISSIONS =====
     document.getElementById('review-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Thank you for your review! It will appear after approval.');
+      showNotification('Thank You!', 'Your review has been submitted and will appear after approval.');
       reviewModal.classList.remove('active');
-      document.body.style.overflow = '';
       this.reset();
       
       // Reset stars
       const stars = this.querySelectorAll('.star');
       stars.forEach((star, index) => {
         star.textContent = '☆';
+        star.classList.remove('active');
         star.setAttribute('aria-label', `Empty ${index + 1} star`);
       });
       document.getElementById('rating-value').value = '0';
     });
     
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showNotification('Welcome Back!', 'You have successfully logged in to your account.');
+      authModal.classList.remove('active');
+      this.reset();
+    });
+    
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showNotification('Welcome!', 'Your account has been created successfully.');
+      signupModal.classList.remove('active');
+      this.reset();
+    });
+    
     document.getElementById('question-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Your question has been submitted! Our team will respond within 24 hours.');
+      showNotification('Question Submitted', 'Our team will respond to your question within 24 hours.');
       this.reset();
     });
     
     document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Thanks for subscribing to our Inner Circle!');
+      showNotification('Thank You!', 'You have been subscribed to our Inner Circle newsletter.');
       this.reset();
     });
 
