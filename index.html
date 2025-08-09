@@ -202,6 +202,69 @@
       background: rgba(212,175,55,0.1);
     }
 
+    .user-dropdown {
+      position: relative;
+      margin-left: 2rem;
+      display: none;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--medium-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background: var(--dark-gray);
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      padding: 1rem;
+      display: none;
+      min-width: 200px;
+      z-index: 1001;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 0;
+      color: var(--white);
+      transition: color 0.3s ease;
+    }
+
+    .dropdown-menu a:hover {
+      color: var(--gold);
+    }
+
+    .dropdown-menu button {
+      background: none;
+      border: none;
+      color: var(--gold-light);
+      padding: 0.5rem 0;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+
+    .dropdown-menu button:hover {
+      color: var(--gold);
+    }
+
     .mobile-menu-toggle {
       display: none;
       background: transparent;
@@ -309,6 +372,30 @@
       box-shadow: 0 10px 25px rgba(212,175,55,0.4);
     }
 
+    /* ===== FEATURED BANNER ===== */
+    .featured-banner {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('assets/images/banner-bg.jpg');
+      background-size: cover;
+      padding: 5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .featured-banner h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .featured-banner h2 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
     /* ===== PREMIUM PRODUCTS SECTION ===== */
     .products-section {
       padding: 10rem 5%;
@@ -379,6 +466,59 @@
       background: var(--gold);
       border-color: var(--gold);
       color: var(--black);
+    }
+
+    .advanced-filters {
+      background: var(--medium-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      display: none;
+    }
+
+    .advanced-filters.active {
+      display: block;
+    }
+
+    .price-filter {
+      margin-bottom: 2rem;
+    }
+
+    .price-filter h4 {
+      margin-bottom: 1rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+    }
+
+    .price-values {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+
+    .stars-filter {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .stars-filter span {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .stars-filter span:hover {
+      color: var(--gold);
+    }
+
+    .toggle-filters {
+      background: transparent;
+      border: none;
+      color: var(--gold);
+      text-decoration: underline;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      display: block;
+      margin: 0 auto 2rem;
     }
 
     .product-grid {
@@ -516,6 +656,25 @@
       background: rgba(212,175,55,0.1);
     }
 
+    .quickview-btn {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .product-card:hover .quickview-btn {
+      opacity: 1;
+    }
+
     .view-all-container {
       text-align: center;
       margin-top: 4rem;
@@ -534,6 +693,74 @@
   
     .view-all-btn:hover {
       background: rgba(212,175,55,0.1);
+    }
+
+    /* ===== RECENTLY VIEWED ===== */
+    .recently-viewed {
+      padding: 5rem 5%;
+      background: var(--dark-gray);
+    }
+
+    /* ===== RECOMMENDED PRODUCTS ===== */
+    .recommended-products {
+      padding: 5rem 5%;
+      background: linear-gradient(to bottom, var(--dark-gray) 0%, var(--black) 100%);
+    }
+
+    /* ===== SOCIAL PROOF ===== */
+    .social-proof {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 3rem;
+      background: var(--medium-gray);
+      margin: 5rem 0;
+    }
+
+    .proof-item {
+      text-align: center;
+    }
+
+    .proof-value {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .proof-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== TRUST BADGES ===== */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 3rem;
+      background: var(--medium-gray);
+      border-top: 1px solid rgba(212,175,55,0.1);
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .badge-item img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .badge-item p {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     /* ===== LUXURY REVIEWS SECTION ===== */
@@ -1082,6 +1309,66 @@
       resize: vertical;
     }
 
+    /* ===== QUICK VIEW MODAL ===== */
+    .quickview-content {
+      display: flex;
+      max-width: 900px;
+      width: 90%;
+      background: var(--dark-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .quickview-left {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--medium-gray);
+    }
+
+    .quickview-left img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    .quickview-right {
+      flex: 1;
+      padding: 3rem;
+    }
+
+    .quickview-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .quickview-price {
+      font-size: 1.8rem;
+      font-family: var(--font-heading);
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .quickview-rating {
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .quickview-desc {
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .view-full-details {
+      display: block;
+      margin-top: 1rem;
+      text-align: center;
+      color: var(--gold-light);
+      text-decoration: underline;
+    }
+
     /* ===== LOGIN MODAL ===== */
     .auth-modal-content {
       background: var(--dark-gray);
@@ -1169,6 +1456,49 @@
       text-decoration: underline;
     }
 
+    /* ===== SIGNUP MODAL ===== */
+    .signup-modal-content {
+      background: var(--dark-gray);
+      border: 1px solid var(--gold);
+      max-width: 500px;
+      width: 90%;
+      padding: 3rem;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    /* ===== EXIT INTENT POPUP ===== */
+    .exit-popup-content {
+      text-align: center;
+      padding: 3rem;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .exit-popup-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .exit-popup-content p {
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .exit-popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .exit-popup-form input {
+      padding: 1rem;
+      background: var(--medium-gray);
+      border: 1px solid var(--gold);
+      color: var(--white);
+    }
+
     /* ===== ANIMATIONS ===== */
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -1194,6 +1524,10 @@
       
       .reviews-container {
         grid-template-columns: 1fr;
+      }
+
+      .quickview-content {
+        flex-direction: column;
       }
     }
 
@@ -1253,6 +1587,19 @@
 
       .auth-modal-content {
         padding: 2rem 1.5rem;
+      }
+
+      .social-proof, .trust-badges {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .featured-banner {
+        padding: 3rem 2rem;
+      }
+
+      .featured-banner h2 {
+        font-size: 2.2rem;
       }
     }
 
@@ -1315,6 +1662,17 @@
         <a href="reviews.html">All Reviews</a>
         <a href="#about">Our Ethos</a>
         <button class="auth-trigger" id="login-btn">Login</button>
+        <div class="user-dropdown" id="user-dropdown">
+          <button class="user-avatar" id="user-avatar">
+            <img src="assets/images/default-avatar.jpg" alt="User">
+          </button>
+          <div class="dropdown-menu">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="purchases.html">My Purchases</a>
+            <a href="settings.html">Settings</a>
+            <button id="logout-btn">Logout</button>
+          </div>
+        </div>
       </div>
       <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
     </nav>
@@ -1333,10 +1691,35 @@
       </div>
     </section>
 
+    <!-- Featured Banner -->
+    <section class="featured-banner">
+      <h3>LIMITED TIME OFFER</h3>
+      <h2>Get 40% Off All Business Collections</h2>
+      <button class="cta-gold">Shop Now</button>
+    </section>
+
     <!-- Premium Products Section -->
     <section id="products" class="products-section">
       <div class="section-header">
         <h2>Curated Knowledge</h2>
+        <button class="toggle-filters" id="toggle-filters">+ Advanced Filters</button>
+        <div class="advanced-filters" id="advanced-filters">
+          <div class="price-filter">
+            <h4>Price Range</h4>
+            <input type="range" id="price-range" min="0" max="5000" step="50">
+            <div class="price-values">
+              <span id="min-price">$0</span>
+              <span id="max-price">$5000</span>
+            </div>
+          </div>
+          <div class="rating-filter">
+            <h4>Minimum Rating</h4>
+            <div class="stars-filter">
+              <span class="filter-star" data-rating="4">★★★★☆ & Up</span>
+              <span class="filter-star" data-rating="3">★★★☆☆ & Up</span>
+            </div>
+          </div>
+        </div>
         <div class="filter-tabs" id="filter-tabs">
           <button class="filter-btn active" data-category="all">All</button>
           <button class="filter-btn" data-category="business">Business</button>
@@ -1348,11 +1731,12 @@
       </div>
       <div class="product-grid" id="product-grid">
         <!-- Product 1 -->
-        <div class="product-card" data-category="ai business">
+        <div class="product-card" data-category="ai business" data-price="199" data-rating="5">
           <a href="GrindUp_AI_Income_Ebook.html" class="product-card-link" aria-label="View AI Income Ebook"></a>
           <div class="product-badge bestseller">BESTSELLER</div>
           <div class="product-image">
             <img src="assets/Images/ebook-cover.jpg" alt="AI Income Ebook" loading="lazy">
+            <button class="quickview-btn" data-product="ai-ebook">Quick View</button>
           </div>
           <div class="product-info">
             <h3>GrindUp AI Income Ebook</h3>
@@ -1363,11 +1747,12 @@
         </div>
         
         <!-- Product 2 -->
-        <div class="product-card" data-category="crypto trading">
+        <div class="product-card" data-category="crypto trading" data-price="1499" data-rating="4">
           <a href="crypto-blackbook.html" class="product-card-link" aria-label="View Crypto Blackbook"></a>
           <div class="product-badge bestseller">BESTSELLER</div>
           <div class="product-image">
             <img src="assets/images/crypto-blackbook.jpg" alt="Crypto Blackbook" loading="lazy">
+            <button class="quickview-btn" data-product="crypto-blackbook">Quick View</button>
           </div>
           <div class="product-info">
             <h3>Crypto Blackbook</h3>
@@ -1378,11 +1763,12 @@
         </div>
         
         <!-- Product 3 -->
-        <div class="product-card" data-category="business">
+        <div class="product-card" data-category="business" data-price="0" data-rating="4">
           <a href="wealth-foundations.html" class="product-card-link" aria-label="View Wealth Foundations"></a>
           <div class="product-badge free">FREE</div>
           <div class="product-image">
             <img src="assets/images/wealth-foundations.jpg" alt="Wealth Foundations" loading="lazy">
+            <button class="quickview-btn" data-product="wealth-foundations">Quick View</button>
           </div>
           <div class="product-info">
             <h3>Wealth Foundations</h3>
@@ -1394,6 +1780,42 @@
       </div>
       <div class="view-all-container">
         <a href="products.html" class="view-all-btn">View All Collections</a>
+      </div>
+    </section>
+
+    <!-- Recently Viewed -->
+    <section class="recently-viewed">
+      <div class="section-header">
+        <h2>Recently Viewed</h2>
+      </div>
+      <div class="product-grid" id="recently-viewed-grid">
+        <!-- Will be populated dynamically -->
+      </div>
+    </section>
+
+    <!-- Recommended Products -->
+    <section class="recommended-products">
+      <div class="section-header">
+        <h2>Recommended For You</h2>
+      </div>
+      <div class="product-grid" id="recommended-grid">
+        <!-- Will be populated dynamically -->
+      </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+      <div class="proof-item">
+        <div class="proof-value">10,000+</div>
+        <div class="proof-label">Members</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-value">97%</div>
+        <div class="proof-label">Success Rate</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-value">24/7</div>
+        <div class="proof-label">Support</div>
       </div>
     </section>
 
@@ -1434,6 +1856,18 @@
       </div>
       <a href="reviews.html" class="view-all-reviews">View All Testimonials</a>
       <button class="leave-review" id="leave-review-btn">Share Your Experience</button>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-badges">
+      <div class="badge-item">
+        <img src="assets/icons/secure-checkout.svg" alt="Secure Checkout">
+        <p>100% Secure Checkout</p>
+      </div>
+      <div class="badge-item">
+        <img src="assets/icons/support.svg" alt="Premium Support">
+        <p>Premium Support</p>
+      </div>
     </section>
 
     <!-- Knowledge Support Section -->
@@ -1573,6 +2007,24 @@
       </div>
     </div>
 
+    <!-- Quick View Modal -->
+    <div id="quickview-modal" class="modal">
+      <div class="quickview-content">
+        <button class="close-modal">&times;</button>
+        <div class="quickview-left">
+          <img id="quickview-image" src="" alt="">
+        </div>
+        <div class="quickview-right">
+          <h3 id="quickview-title"></h3>
+          <div class="quickview-price" id="quickview-price"></div>
+          <div class="quickview-rating" id="quickview-rating"></div>
+          <p id="quickview-desc"></p>
+          <button class="cta-gold">Add to Cart</button>
+          <a href="#" class="view-full-details">View Full Details</a>
+        </div>
+      </div>
+    </div>
+
     <!-- Login Modal -->
     <div id="auth-modal" class="modal">
       <div class="auth-modal-content">
@@ -1629,6 +2081,19 @@
         </div>
       </div>
     </div>
+
+    <!-- Exit Intent Popup -->
+    <div id="exit-popup" class="modal">
+      <div class="exit-popup-content">
+        <button class="close-modal">&times;</button>
+        <h3>Wait! Get 10% Off</h3>
+        <p>Enter your email to receive your discount code</p>
+        <form class="exit-popup-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit" class="cta-gold">Get My Discount</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1644,6 +2109,19 @@
 
       // Initialize other elements after load
       checkVisibility();
+      
+      // Check if user is logged in
+      if(localStorage.getItem('loggedIn')) {
+        document.getElementById('login-btn').style.display = 'none';
+        document.getElementById('user-dropdown').style.display = 'block';
+      }
+      
+      // Load recently viewed and recommended products
+      updateRecentlyViewed();
+      loadRecommendedProducts();
+      
+      // Initialize exit intent popup
+      setupExitIntent();
     });
 
     // ===== NAVBAR SCROLL EFFECT =====
@@ -1673,6 +2151,26 @@
       });
     });
 
+    // ===== USER DROPDOWN =====
+    document.getElementById('user-avatar').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelector('.dropdown-menu').style.display = 
+        document.querySelector('.dropdown-menu').style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+      document.querySelector('.dropdown-menu').style.display = 'none';
+    });
+
+    // ===== LOGOUT =====
+    document.getElementById('logout-btn').addEventListener('click', function() {
+      localStorage.removeItem('loggedIn');
+      document.getElementById('login-btn').style.display = 'block';
+      document.getElementById('user-dropdown').style.display = 'none';
+      showNotification('Logged Out', 'You have been successfully logged out.');
+    });
+
     // ===== SMOOTH SCROLL =====
     document.getElementById('home-logo').addEventListener('click', function(e) {
       e.preventDefault();
@@ -1699,6 +2197,23 @@
       document.getElementById('products').scrollIntoView({
         behavior: 'smooth'
       });
+    });
+
+    // ===== TOGGLE ADVANCED FILTERS =====
+    document.getElementById('toggle-filters').addEventListener('click', function() {
+      const filters = document.getElementById('advanced-filters');
+      filters.classList.toggle('active');
+      this.textContent = filters.classList.contains('active') ? '- Hide Filters' : '+ Advanced Filters';
+    });
+
+    // ===== PRICE RANGE FILTER =====
+    const priceRange = document.getElementById('price-range');
+    const minPrice = document.getElementById('min-price');
+    const maxPrice = document.getElementById('max-price');
+
+    priceRange.addEventListener('input', function() {
+      minPrice.textContent = '$0';
+      maxPrice.textContent = '$' + this.value;
     });
 
     // ===== FILTER PRODUCTS =====
@@ -1730,18 +2245,140 @@
       const link = card.querySelector('.product-card-link');
       const button = card.querySelector('.view-product');
       
+      // Track recently viewed
+      card.addEventListener('click', function() {
+        if (!localStorage.getItem('recentlyViewed')) {
+          localStorage.setItem('recentlyViewed', JSON.stringify([]));
+        }
+        const viewed = JSON.parse(localStorage.getItem('recentlyViewed'));
+        const productId = card.dataset.category.split(' ')[0]; // Simplified ID
+        if (!viewed.includes(productId)) {
+          viewed.push(productId);
+          localStorage.setItem('recentlyViewed', JSON.stringify(viewed));
+          updateRecentlyViewed();
+        }
+      });
+      
       // Prevent the card link from triggering when clicking the button
       button.addEventListener('click', function(e) {
         e.stopPropagation();
       });
-      
-      // Make the entire card clickable except the button
-      card.addEventListener('click', function(e) {
-        if (!e.target.closest('.view-product')) {
-          link.click();
+    });
+
+    // ===== UPDATE RECENTLY VIEWED =====
+    function updateRecentlyViewed() {
+      const viewedGrid = document.getElementById('recently-viewed-grid');
+      if (localStorage.getItem('recentlyViewed')) {
+        const viewed = JSON.parse(localStorage.getItem('recentlyViewed'));
+        // In a real app, you would fetch these products from your database
+        viewedGrid.innerHTML = viewed.map(id => {
+          // Simplified example - in reality you'd match with actual products
+          return `
+            <div class="product-card" data-category="${id}">
+              <div class="product-image">
+                <img src="assets/images/${id}-product.jpg" alt="${id}">
+              </div>
+              <div class="product-info">
+                <h3>Recently Viewed ${id}</h3>
+                <button class="view-product">View Again</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    // ===== RECOMMENDED PRODUCTS =====
+    function loadRecommendedProducts() {
+      // In a real app, this would be based on user behavior or preferences
+      const recommendedGrid = document.getElementById('recommended-grid');
+      recommendedGrid.innerHTML = `
+        <div class="product-card" data-category="ai">
+          <div class="product-image">
+            <img src="assets/images/ai-advanced.jpg" alt="AI Advanced">
+          </div>
+          <div class="product-info">
+            <h3>AI Advanced Techniques</h3>
+            <div class="product-price">$299</div>
+            <button class="view-product">View Details</button>
+          </div>
+        </div>
+        <div class="product-card" data-category="trading">
+          <div class="product-image">
+            <img src="assets/images/forex-mastery.jpg" alt="Forex Mastery">
+          </div>
+          <div class="product-info">
+            <h3>Forex Mastery Course</h3>
+            <div class="product-price">$899</div>
+            <button class="view-product">View Details</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ===== QUICK VIEW MODAL =====
+    document.querySelectorAll('.quickview-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const productId = this.dataset.product;
+        const quickviewModal = document.getElementById('quickview-modal');
+        
+        // In a real app, you would fetch this data from your database
+        const productData = {
+          'ai-ebook': {
+            title: 'GrindUp AI Income Ebook',
+            price: '$1.99',
+            rating: '★★★★★ (1,247 reviews)',
+            desc: 'Learn how to leverage AI to create automated income streams. This comprehensive guide covers everything from basic automation to advanced AI implementations across multiple business models.',
+            image: 'assets/Images/ebook-cover.jpg'
+          },
+          'crypto-blackbook': {
+            title: 'Crypto Blackbook',
+            price: '$1,499',
+            rating: '★★★★☆ (892 reviews)',
+            desc: 'Institutional-grade crypto trading strategies that hedge funds don\'t want you to know. Includes proprietary indicators and trade setups that have generated millions in profits.',
+            image: 'assets/images/crypto-blackbook.jpg'
+          },
+          'wealth-foundations': {
+            title: 'Wealth Foundations',
+            price: 'FREE',
+            rating: '★★★★☆ (1.2k reviews)',
+            desc: 'The essential guide to building wealth through smart financial habits, investment strategies, and mindset shifts. Perfect for beginners and those looking to reset their financial approach.',
+            image: 'assets/images/wealth-foundations.jpg'
+          }
+        };
+        
+        if (productData[productId]) {
+          document.getElementById('quickview-title').textContent = productData[productId].title;
+          document.getElementById('quickview-price').textContent = productData[productId].price;
+          document.getElementById('quickview-rating').textContent = productData[productId].rating;
+          document.getElementById('quickview-desc').textContent = productData[productId].desc;
+          document.getElementById('quickview-image').src = productData[productId].image;
+          document.getElementById('quickview-image').alt = productData[productId].title;
+          
+          quickviewModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
         }
       });
     });
+
+    // ===== EXIT INTENT POPUP =====
+    function setupExitIntent() {
+      let mouseY = 0;
+      let shown = false;
+      
+      document.addEventListener('mousemove', function(e) {
+        mouseY = e.clientY;
+        
+        // If mouse moves towards the top of the page and popup hasn't been shown yet
+        if (mouseY < 50 && !shown && !localStorage.getItem('exitPopupShown')) {
+          document.getElementById('exit-popup').classList.add('active');
+          document.body.style.overflow = 'hidden';
+          shown = true;
+          localStorage.setItem('exitPopupShown', 'true');
+        }
+      });
+    }
 
     // ===== SCROLL ANIMATIONS =====
     function checkVisibility() {
@@ -1778,6 +2415,8 @@
     const authModal = document.getElementById('auth-modal');
     const signupModal = document.getElementById('signup-modal');
     const reviewModal = document.getElementById('review-modal');
+    const quickviewModal = document.getElementById('quickview-modal');
+    const exitPopup = document.getElementById('exit-popup');
     const loginBtn = document.getElementById('login-btn');
     const leaveReviewBtn = document.getElementById('leave-review-btn');
     const closeModal = document.querySelectorAll('.close-modal');
@@ -1882,6 +2521,10 @@
     
     document.getElementById('login-form').addEventListener('submit', function(e) {
       e.preventDefault();
+      // Simulate login
+      localStorage.setItem('loggedIn', 'true');
+      document.getElementById('login-btn').style.display = 'none';
+      document.getElementById('user-dropdown').style.display = 'block';
       showNotification('Welcome Back!', 'You have successfully logged in to your account.');
       authModal.classList.remove('active');
       this.reset();
@@ -1889,6 +2532,10 @@
     
     document.getElementById('signup-form').addEventListener('submit', function(e) {
       e.preventDefault();
+      // Simulate signup and login
+      localStorage.setItem('loggedIn', 'true');
+      document.getElementById('login-btn').style.display = 'none';
+      document.getElementById('user-dropdown').style.display = 'block';
       showNotification('Welcome!', 'Your account has been created successfully.');
       signupModal.classList.remove('active');
       this.reset();
@@ -1903,6 +2550,13 @@
     document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
       e.preventDefault();
       showNotification('Thank You!', 'You have been subscribed to our Inner Circle newsletter.');
+      this.reset();
+    });
+
+    document.querySelector('.exit-popup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showNotification('Discount Sent!', 'Check your email for your 10% discount code.');
+      exitPopup.classList.remove('active');
       this.reset();
     });
 
